@@ -1169,7 +1169,7 @@
       "fonte": "Premissa do grupo",
       "url": "",
       "data_acesso": "",
-      "justificativa": "A tarifa homologada é publicada sem tributos e sem bandeira. Não confirmamos como a prefeitura é cobrada. O valor-base 1,00 é conservador para o payback; a faixa 0,90 a 1,40 é de teste, não um dado."
+      "justificativa": "Pela prática da ANEEL as tarifas homologadas não incluem tributos nem bandeira tarifária; a página da Enel não diz isso expressamente e não confirmamos como a prefeitura é cobrada. O valor-base 1,00 (sem esses adicionais) é conservador para o payback; a faixa 0,90 a 1,40 é de teste, não um dado."
     },
     {
       "id": "irradiacao_sundata",

@@ -196,7 +196,7 @@
       ['Consumo de energia (kWh)', 'E = P × t / 1000, com P em watts e t em horas. A carga é a soma de ' + dim.pontos_total + ' pontos, ' + nf(dim.horas_noite, 0) + ' h por noite, ' + nf(dim.dias_ano, 0) + ' dias por ano. Mês = ano / 12.'],
       ['Compra líquida da rede (kWh/mês)', 'Carga menos a geração fotovoltaica aproveitada. Em A3 é zero, porque cada ponto tem painel e bateria próprios.'],
       ['Economia de energia da rede (%)', '1 menos a compra líquida da alternativa dividida pelo consumo da situação atual (A0).'],
-      ['Redução estimada de custos (R$/mês)', '(Energia + manutenção de A0) menos (energia + manutenção da alternativa). Tarifa B4a da Enel SP: ' + brl(dim.tarifa_rs_kwh, 5) + ' por kWh (TUSD + TE, sem tributos). Em A3 a manutenção inclui a reserva para trocar a bateria.'],
+      ['Redução estimada de custos (R$/mês)', '(Energia + manutenção de A0) menos (energia + manutenção da alternativa). Tarifa B4a da Enel SP: ' + brl(dim.tarifa_rs_kwh, 5) + ' por kWh (TUSD + TE; tributos e bandeira fora da premissa-base). Em A3 a manutenção inclui a reserva para trocar a bateria.'],
       ['Participação de energia renovável (%)', 'Geração solar própria aproveitada dividida pela carga. É uma conta de compensação: em A2 a rede continua fisicamente ligada.'],
       ['Emissões evitadas (kg CO₂/ano)', '(Compra da rede de A0 menos a da alternativa) × ' + nf(dim.fator_emissao_kg_kwh * 1000, 1) + ' kg CO₂/MWh (fator médio do SIN em 2025, MCTI). A versão líquida desconta ' + nf(efFV, 1) + ' g CO₂e por kWh solar (ciclo de vida do FV).'],
       ['Tempo de funcionamento eficiente (h/dia)', 'Horas por noite em que a luminária opera em modo economia (nível base de 30% com reforço quando há presença).'],

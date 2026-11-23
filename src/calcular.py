@@ -370,6 +370,17 @@ def tabelas_markdown(res, sens, cenarios):
     def linha(rotulo, campo, casas=1):
         return f"| {rotulo} | " + " | ".join(fmt(a[campo], casas) for a in alts) + " |\n"
 
+    t0 = cab
+    t0 += linha("Compra líquida da rede (kWh/mês)", "rede_kwh_mes", 1)
+    t0 += linha("Economia de energia da rede (%)", "economia_rede_pct", 1)
+    t0 += linha("Participação de energia renovável (%)", "participacao_renovavel_pct", 1)
+    t0 += linha("Custo de operação (R$/mês)", "custo_operacao_rs_mes", 2)
+    t0 += linha("Redução de custo (R$/mês)", "economia_rs_mes", 2)
+    t0 += linha("Investimento (R$)", "capex_rs", 0)
+    t0 += "| Payback simples (anos) | " + " | ".join(
+        "-" if a["id"] == "A0" else fmt(a["payback_anos"], 1) for a in alts) + " |\n"
+    t0 += linha("Emissões evitadas líquidas do FV (kg CO2e/ano)", "emissoes_evitadas_liquidas_kg_ano", 1)
+
     t1 = cab
     t1 += "| Potência por ponto (W) | " + " | ".join(fmt(a["potencia_ponto_w"], 1) for a in alts) + " |\n"
     t1 += linha("Energia por noite (kWh)", "energia_noite_kwh", 2)
@@ -405,7 +416,7 @@ def tabelas_markdown(res, sens, cenarios):
                + "<br>".join("• " + b for b in a["limitacoes"]) + " |\n")
 
     t5 = "| Premissa variada | Faixa testada | Payback A1 (anos) | Payback A2 (anos) | Payback A3 (anos) |\n|---|---|---|---|---|\n"
-    for t in sens[:12]:
+    for t in sens[:10]:
         t5 += (f"| {t['descricao']} | {fmt(t['minimo'], 2)} a {fmt(t['maximo'], 2)} {t['unidade']} | "
                f"{fmt(t['payback_a1'][0], 1)} a {fmt(t['payback_a1'][1], 1)} | "
                f"{fmt(t['payback_a2'][0], 1)} a {fmt(t['payback_a2'][1], 1)} | "
@@ -415,7 +426,7 @@ def tabelas_markdown(res, sens, cenarios):
         c = cenarios[nome]
         t6 += (f"| {nome.capitalize()} | {fmt(c['payback_a1'], 1)} | {fmt(c['payback_a2'], 1)} | {fmt(c['payback_a3'], 1)} | "
                f"{fmt(c['economia_rs_mes_a2'], 2)} | {fmt(c['evitadas_liq_a2'], 1)} |\n")
-    return {"consumo": t1, "custos": t2, "emissoes": t3, "qualitativo": t4, "sensibilidade": t5, "cenarios": t6}
+    return {"resumo": t0, "consumo": t1, "custos": t2, "emissoes": t3, "qualitativo": t4, "sensibilidade": t5, "cenarios": t6}
 
 
 def gravar(res, sens, cenarios, linhas):
@@ -464,7 +475,7 @@ def gravar(res, sens, cenarios, linhas):
     tabelas = tabelas_markdown(res, sens, cenarios)
     with open(os.path.join(RAIZ, "resultados", "comparativo.md"), "w", encoding="utf-8") as f:
         f.write("# Comparação das alternativas (gerado por src/calcular.py)\n\n")
-        for chave, titulo in (("consumo", "Consumo e energia"), ("custos", "Custos e payback"), ("emissoes", "Emissões"),
+        for chave, titulo in (("resumo", "Resumo"), ("consumo", "Consumo e energia"), ("custos", "Custos e payback"), ("emissoes", "Emissões"),
                               ("qualitativo", "Viabilidade, impactos, benefícios e limitações"),
                               ("sensibilidade", "Sensibilidade do payback"), ("cenarios", "Cenários combinados")):
             f.write(f"## {titulo}\n\n{tabelas[chave]}\n")

@@ -1,5 +1,18 @@
 # Comparação das alternativas (gerado por src/calcular.py)
 
+## Resumo
+
+| Indicador | A0 Convencional | A1 LED na rede | A2 LED + FV na rede | A3 LED solar autônomo |
+|---|---:|---:|---:|---:|
+| Compra líquida da rede (kWh/mês) | 493,5 | 175,2 | 6,3 | 0,0 |
+| Economia de energia da rede (%) | 0,0 | 64,5 | 98,7 | 100,0 |
+| Participação de energia renovável (%) | 0,0 | 0,0 | 95,0 | 100,0 |
+| Custo de operação (R$/mês) | 262,92 | 86,73 | 24,69 | 313,33 |
+| Redução de custo (R$/mês) | 0,00 | 176,18 | 238,23 | -50,42 |
+| Investimento (R$) | 0 | 5.920 | 11.540 | 56.960 |
+| Payback simples (anos) | - | 2,8 | 4,0 | não se paga |
+| Emissões evitadas líquidas do FV (kg CO2e/ano) | 0,0 | 176,1 | 207,8 | 208,1 |
+
 ## Consumo e energia
 
 | Indicador | A0 Convencional | A1 LED na rede | A2 LED + FV na rede | A3 LED solar autônomo |
@@ -59,8 +72,6 @@
 | Vida útil da lâmpada HPS | 16.000,00 a 32.000,00 h | 2,5 a 3,0 | 3,7 a 4,3 | não se paga a não se paga |
 | Horas de funcionamento por noite (pôr do sol ao nascer do sol) | 11,00 a 13,00 h/dia | 3,1 a 2,6 | 4,4 a 3,8 | não se paga a não se paga |
 | Manutenção anual da luminária LED (inspeção e limpeza) | 4,00 a 20,00 R$/ponto/ano | 2,7 a 3,1 | 3,9 a 4,3 | não se paga a não se paga |
-| Perda do reator e equipamentos auxiliares da lâmpada HPS | 8,00 a 15,00 W | 3,0 a 2,7 | 4,2 a 3,9 | não se paga a não se paga |
-| Fração do valor da tarifa efetivamente compensada pela geração FV (Fio B) | 0,75 a 1,00 fração | 2,8 a 2,8 | 4,1 a 3,9 | não se paga a não se paga |
 
 ## Cenários combinados
 
