@@ -1,0 +1,12 @@
+GLOBAL SOLUTION 2026.2 - SOLUÇÕES EM ENERGIAS RENOVÁVEIS E SUSTENTÁVEIS (SERS)
+Desafio integrador: Neighborhood Action Dashboard (CitizenTech)
+FIAP - Ciência da Computação - Turma [[TURMA]]
+
+INTEGRANTES
+1. [[NOME_1]] - RM [[RM_1]]
+2. [[NOME_2]] - RM [[RM_2]]
+3. [[NOME_3]] - RM [[RM_3]]
+
+LINKS
+Repositório no GitHub: [[LINK_GITHUB]]
+Vídeo no YouTube (não listado, até 3 minutos): [[LINK_YOUTUBE]]
