@@ -362,6 +362,18 @@ def fmt(v, casas=1):
     return s.replace(",", "X").replace(".", ",").replace("X", ".")
 
 
+def fmt_auto(v):
+    """Inteiro sem casas; senao, 2 casas."""
+    return fmt(v, 0 if float(v).is_integer() else 2)
+
+
+def fmt_par(par):
+    """Dois paybacks (no minimo e no maximo da faixa) em uma celula."""
+    if par[0] is None and par[1] is None:
+        return "não se paga"
+    return f"{fmt(par[0], 1)} a {fmt(par[1], 1)}"
+
+
 def tabelas_markdown(res, sens, cenarios):
     alts = res["alternativas"]
     nomes = [a["nome"] for a in alts]
@@ -415,12 +427,11 @@ def tabelas_markdown(res, sens, cenarios):
                + "<br>".join("• " + b for b in a["beneficios"]) + " | "
                + "<br>".join("• " + b for b in a["limitacoes"]) + " |\n")
 
-    t5 = "| Premissa variada | Faixa testada | Payback A1 (anos) | Payback A2 (anos) | Payback A3 (anos) |\n|---|---|---|---|---|\n"
-    for t in sens[:10]:
-        t5 += (f"| {t['descricao']} | {fmt(t['minimo'], 2)} a {fmt(t['maximo'], 2)} {t['unidade']} | "
-               f"{fmt(t['payback_a1'][0], 1)} a {fmt(t['payback_a1'][1], 1)} | "
-               f"{fmt(t['payback_a2'][0], 1)} a {fmt(t['payback_a2'][1], 1)} | "
-               f"{fmt(t['payback_a3'][0], 1)} a {fmt(t['payback_a3'][1], 1)} |\n")
+    t5 = ("| Premissa variada | Faixa testada (mín. a máx.) | Payback A1 (anos, do mín. ao máx.) | Payback A2 (anos, do mín. ao máx.) "
+          "| Payback A3 (anos, do mín. ao máx.) |\n|---|---|---|---|---|\n")
+    for t_ in sens[:10]:
+        t5 += (f"| {t_['descricao']} | {fmt_auto(t_['minimo'])} a {fmt_auto(t_['maximo'])} {t_['unidade']} | "
+               f"{fmt_par(t_['payback_a1'])} | {fmt_par(t_['payback_a2'])} | {fmt_par(t_['payback_a3'])} |\n")
     t6 = "| Cenário combinado | Payback A1 (anos) | Payback A2 (anos) | Payback A3 (anos) | Economia A2 (R$/mês) | Emissões evitadas líquidas A2 (kg CO2e/ano) |\n|---|---|---|---|---|---|\n"
     for nome in ("otimista", "base", "conservador"):
         c = cenarios[nome]

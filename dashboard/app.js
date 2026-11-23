@@ -29,6 +29,7 @@
     casas = casas === undefined ? 1 : casas;
     return new Intl.NumberFormat('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas }).format(v);
   }
+  function nfa(v) { return nf(v, Number.isInteger(v) ? 0 : 2); }
   function brl(v, casas) {
     return 'R$ ' + nf(v, casas === undefined ? 2 : casas);
   }
@@ -171,9 +172,9 @@
       return [v[0] === null ? 'não se paga' : nf(v[0], 1), v[1] === null ? 'não se paga' : nf(v[1], 1)].join(' a ');
     }
     var t = document.getElementById('tab-sens');
-    var h = '<thead><tr><th>Premissa variada</th><th>Faixa testada</th><th>Payback A1 (anos)</th><th>Payback A2 (anos)</th><th>Payback A3 (anos)</th></tr></thead><tbody>';
+    var h = '<thead><tr><th>Premissa variada</th><th>Faixa testada (mín. a máx.)</th><th>Payback A1 (anos, do mín. ao máx.)</th><th>Payback A2 (anos, do mín. ao máx.)</th><th>Payback A3 (anos, do mín. ao máx.)</th></tr></thead><tbody>';
     R.sensibilidade.slice(0, 10).forEach(function (s) {
-      h += '<tr><td>' + esc(s.descricao) + '</td><td>' + nf(s.minimo, 2) + ' a ' + nf(s.maximo, 2) + ' ' + esc(s.unidade) +
+      h += '<tr><td>' + esc(s.descricao) + '</td><td>' + nfa(s.minimo) + ' a ' + nfa(s.maximo) + ' ' + esc(s.unidade) +
         '</td><td>' + par(s.payback_a1) + '</td><td>' + par(s.payback_a2) + '</td><td>' + par(s.payback_a3) + '</td></tr>';
     });
     t.innerHTML = h + '</tbody>';

@@ -60,18 +60,18 @@
 
 ## Sensibilidade do payback
 
-| Premissa variada | Faixa testada | Payback A1 (anos) | Payback A2 (anos) | Payback A3 (anos) |
+| Premissa variada | Faixa testada (mín. a máx.) | Payback A1 (anos, do mín. ao máx.) | Payback A2 (anos, do mín. ao máx.) | Payback A3 (anos, do mín. ao máx.) |
 |---|---|---|---|---|
-| Preço da luminária LED de 30 W | 150,00 a 450,00 R$/un | 2,0 a 4,3 | 3,5 a 5,2 | não se paga a não se paga |
-| Multiplicador da tarifa para tributos e bandeira tarifária | 0,90 a 1,40 fator | 3,0 a 2,1 | 4,4 a 3,0 | não se paga a não se paga |
-| Mão de obra de troca da luminária em poste existente | 60,00 a 250,00 R$/ponto | 2,3 a 3,8 | 3,7 a 4,8 | não se paga a não se paga |
-| Custo de uma troca de lâmpada HPS (lâmpada, reator/ignitor rateado e mão de obra) | 120,00 a 350,00 R$/troca | 3,1 a 2,3 | 4,4 a 3,5 | não se paga a não se paga |
-| Sensor de presença, fotocélula e driver dimerizável por ponto | 50,00 a 200,00 R$/ponto | 2,8 a 2,8 | 3,8 a 4,7 | não se paga a não se paga |
-| Potência da luminária LED adotada por ponto (com driver) | 27,00 a 40,00 W | 2,7 a 3,3 | 4,0 a 4,8 | não se paga a não se paga |
-| Custo instalado do sistema FV conectado à rede, porte muito pequeno | 2,45 a 4,50 R$/Wp | 2,8 a 2,8 | 3,5 a 4,3 | não se paga a não se paga |
-| Vida útil da lâmpada HPS | 16.000,00 a 32.000,00 h | 2,5 a 3,0 | 3,7 a 4,3 | não se paga a não se paga |
-| Horas de funcionamento por noite (pôr do sol ao nascer do sol) | 11,00 a 13,00 h/dia | 3,1 a 2,6 | 4,4 a 3,8 | não se paga a não se paga |
-| Manutenção anual da luminária LED (inspeção e limpeza) | 4,00 a 20,00 R$/ponto/ano | 2,7 a 3,1 | 3,9 a 4,3 | não se paga a não se paga |
+| Preço da luminária LED de 30 W | 150 a 450 R$/un | 2,0 a 4,3 | 3,5 a 5,2 | não se paga |
+| Multiplicador da tarifa para tributos e bandeira tarifária | 0,90 a 1,40 fator | 3,0 a 2,1 | 4,4 a 3,0 | não se paga |
+| Mão de obra de troca da luminária em poste existente | 60 a 250 R$/ponto | 2,3 a 3,8 | 3,7 a 4,8 | não se paga |
+| Custo de uma troca de lâmpada HPS (lâmpada, reator/ignitor rateado e mão de obra) | 120 a 350 R$/troca | 3,1 a 2,3 | 4,4 a 3,5 | não se paga |
+| Sensor de presença, fotocélula e driver dimerizável por ponto | 50 a 200 R$/ponto | 2,8 a 2,8 | 3,8 a 4,7 | não se paga |
+| Potência da luminária LED adotada por ponto (com driver) | 27 a 40 W | 2,7 a 3,3 | 4,0 a 4,8 | não se paga |
+| Custo instalado do sistema FV conectado à rede, porte muito pequeno | 2,45 a 4,50 R$/Wp | 2,8 a 2,8 | 3,5 a 4,3 | não se paga |
+| Vida útil da lâmpada HPS | 16.000 a 32.000 h | 2,5 a 3,0 | 3,7 a 4,3 | não se paga |
+| Horas de funcionamento por noite (pôr do sol ao nascer do sol) | 11 a 13 h/dia | 3,1 a 2,6 | 4,4 a 3,8 | não se paga |
+| Manutenção anual da luminária LED (inspeção e limpeza) | 4 a 20 R$/ponto/ano | 2,7 a 3,1 | 3,9 a 4,3 | não se paga |
 
 ## Cenários combinados
 
