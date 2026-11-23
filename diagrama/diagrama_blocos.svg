@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1130" height="772" viewBox="0 0 1130 772" font-family="Segoe UI, Arial, Helvetica, sans-serif" role="img" aria-labelledby="t d">
+<title id="t">Diagrama de blocos da solução de iluminação eficiente e renovável</title>
+<desc id="d">A rede elétrica e os módulos fotovoltaicos alimentam a conversão e, em seguida, 16 luminárias LED. Sensores e medidores geram dados que passam pelo controlador e pela telemetria até o processamento em Python, que alimenta os indicadores do dashboard.</desc>
+<defs>
+<marker id="ponta-energia" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#c2410c"/></marker>
+<marker id="ponta-dados" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#1d4ed8"/></marker>
+<marker id="ponta-comando" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#15803d"/></marker>
+</defs>
+<rect width="1130" height="772" fill="#ffffff"/>
+<text x="30" y="34" font-size="21" font-weight="700" fill="#111827">Diagrama de blocos conceitual: iluminação eficiente e renovável</text>
+<text x="30" y="58" font-size="14" fill="#4b5563">Praça comunitária e pontos de ônibus do entorno, Capão Redondo (São Paulo). Caso-modelo simulado. A2 = LED + FV na rede; A3 = LED solar autônomo.</text>
+<rect x="14" y="76" width="1102" height="232" rx="12" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5"/>
+<text x="30" y="98" font-size="14" font-weight="700" fill="#9a3412" letter-spacing="0.5">1. ENERGIA: FONTES, CONVERSÃO E CONSUMIDORES</text>
+<rect x="14" y="318" width="1102" height="160" rx="12" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+<text x="30" y="340" font-size="14" font-weight="700" fill="#1e3a8a" letter-spacing="0.5">2. SENSORES, MEDIÇÃO E AUTOMAÇÃO</text>
+<rect x="14" y="488" width="1102" height="266" rx="12" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+<text x="30" y="510" font-size="14" font-weight="700" fill="#14532d" letter-spacing="0.5">3. DADOS, PROCESSAMENTO E DASHBOARD</text>
+<rect x="30" y="108" width="230" height="84" rx="10" fill="#ffffff" stroke="#c2410c" stroke-width="2"/>
+<text x="42" y="134" font-size="16" font-weight="700" fill="#111827">Rede elétrica (SIN)</text>
+<text x="42" y="158" font-size="14" fill="#374151">Enel SP, tarifa B4a</text>
+<text x="42" y="178" font-size="14" fill="#374151">R$ 0,434 por kWh</text>
+<rect x="30" y="204" width="230" height="84" rx="10" fill="#ffffff" stroke="#c2410c" stroke-width="2"/>
+<text x="42" y="230" font-size="16" font-weight="700" fill="#111827">Sol: módulos FV</text>
+<text x="42" y="254" font-size="14" fill="#374151">A2: 2 × 550 Wp, na rede</text>
+<text x="42" y="274" font-size="14" fill="#374151">A3: 100 Wp por poste</text>
+<rect x="310" y="118" width="230" height="160" rx="10" fill="#ffffff" stroke="#c2410c" stroke-width="2"/>
+<text x="322" y="144" font-size="16" font-weight="700" fill="#111827">Conversão e proteção</text>
+<text x="322" y="168" font-size="14" fill="#374151">A2: quadro, inversor</text>
+<text x="322" y="188" font-size="14" fill="#374151">conectado à rede e</text>
+<text x="322" y="208" font-size="14" fill="#374151">medidor bidirecional</text>
+<text x="322" y="228" font-size="14" fill="#374151">A3: controlador MPPT e</text>
+<text x="322" y="248" font-size="14" fill="#374151">bateria LiFePO4 por poste</text>
+<rect x="590" y="118" width="230" height="160" rx="10" fill="#ffffff" stroke="#c2410c" stroke-width="2"/>
+<text x="602" y="144" font-size="16" font-weight="700" fill="#111827">Consumidores</text>
+<text x="602" y="168" font-size="14" fill="#374151">16 luminárias LED de 30 W</text>
+<text x="602" y="188" font-size="14" fill="#374151">12 na praça e 4 em pontos</text>
+<text x="602" y="208" font-size="14" fill="#374151">de ônibus</text>
+<text x="602" y="228" font-size="14" fill="#374151">Driver dimerizável</text>
+<text x="602" y="248" font-size="14" fill="#374151">Mesma necessidade de luz</text>
+<rect x="870" y="118" width="230" height="160" rx="10" fill="#f9fafb" stroke="#6b7280" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="882" y="144" font-size="16" font-weight="700" fill="#111827">Cálculo do consumo</text>
+<text x="882" y="168" font-size="14" fill="#374151">E (kWh) = P (W) × t (h) / 1000</text>
+<text x="882" y="188" font-size="14" fill="#374151">Base: 16 pontos, 12 h por</text>
+<text x="882" y="208" font-size="14" fill="#374151">noite, 365 dias por ano</text>
+<text x="882" y="228" font-size="14" fill="#374151">A0: 16 × 84,5 W × 12 h</text>
+<text x="882" y="248" font-size="14" fill="#374151">= 16,2 kWh por noite</text>
+<rect x="30" y="350" width="230" height="116" rx="10" fill="#ffffff" stroke="#6b7280" stroke-width="2"/>
+<text x="42" y="376" font-size="16" font-weight="700" fill="#111827">Legenda</text>
+<line x1="44" y1="386" x2="94" y2="386" stroke="#c2410c" stroke-width="3"/>
+<text x="106" y="391" font-size="14" fill="#374151">fluxo de energia</text>
+<line x1="44" y1="412" x2="94" y2="412" stroke="#1d4ed8" stroke-width="3" stroke-dasharray="7 5"/>
+<text x="106" y="417" font-size="14" fill="#374151">dados e medições</text>
+<line x1="44" y1="438" x2="94" y2="438" stroke="#15803d" stroke-width="3" stroke-dasharray="7 5"/>
+<text x="106" y="443" font-size="14" fill="#374151">comandos</text>
+<rect x="310" y="350" width="230" height="116" rx="10" fill="#ffffff" stroke="#1d4ed8" stroke-width="2"/>
+<text x="322" y="376" font-size="16" font-weight="700" fill="#111827">Medição de energia</text>
+<text x="322" y="400" font-size="14" fill="#374151">kWh da rede e gerados</text>
+<text x="322" y="420" font-size="14" fill="#374151">tensão da bateria (A3)</text>
+<text x="322" y="440" font-size="14" fill="#374151">dados de consumo</text>
+<rect x="590" y="350" width="230" height="116" rx="10" fill="#ffffff" stroke="#15803d" stroke-width="2"/>
+<text x="602" y="376" font-size="16" font-weight="700" fill="#111827">Lógica de automação</text>
+<text x="602" y="400" font-size="14" fill="#374151">100% no início da noite;</text>
+<text x="602" y="420" font-size="14" fill="#374151">30% na madrugada e 100%</text>
+<text x="602" y="440" font-size="14" fill="#374151">ao detectar presença</text>
+<rect x="870" y="350" width="230" height="116" rx="10" fill="#ffffff" stroke="#1d4ed8" stroke-width="2"/>
+<text x="882" y="376" font-size="16" font-weight="700" fill="#111827">Sensores</text>
+<text x="882" y="400" font-size="14" fill="#374151">Presença (PIR)</text>
+<text x="882" y="420" font-size="14" fill="#374151">Fotocélula ou relógio</text>
+<text x="882" y="440" font-size="14" fill="#374151">astronômico</text>
+<rect x="30" y="520" width="230" height="178" rx="10" fill="#f9fafb" stroke="#6b7280" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="42" y="546" font-size="16" font-weight="700" fill="#111827">Escopo deste trabalho</text>
+<text x="42" y="570" font-size="14" fill="#374151">Não há equipamento físico.</text>
+<text x="42" y="590" font-size="14" fill="#374151">Sensores e medidores são</text>
+<text x="42" y="610" font-size="14" fill="#374151">simulados: o script gera os</text>
+<text x="42" y="630" font-size="14" fill="#374151">valores a partir das</text>
+<text x="42" y="650" font-size="14" fill="#374151">premissas em</text>
+<text x="42" y="670" font-size="14" fill="#374151">dados/premissas.csv.</text>
+<rect x="310" y="520" width="230" height="118" rx="10" fill="#ffffff" stroke="#1d4ed8" stroke-width="2"/>
+<text x="322" y="546" font-size="16" font-weight="700" fill="#111827">Telemetria</text>
+<text x="322" y="570" font-size="14" fill="#374151">Gateway envia as leituras</text>
+<text x="322" y="590" font-size="14" fill="#374151">de energia ao processamento</text>
+<text x="322" y="610" font-size="14" fill="#374151">(simulado)</text>
+<rect x="590" y="520" width="230" height="118" rx="10" fill="#ffffff" stroke="#1d4ed8" stroke-width="2"/>
+<text x="602" y="546" font-size="16" font-weight="700" fill="#111827">Processamento</text>
+<text x="602" y="570" font-size="14" fill="#374151">Script Python (calcular.py)</text>
+<text x="602" y="590" font-size="14" fill="#374151">E = P × t / 1000, custos,</text>
+<text x="602" y="610" font-size="14" fill="#374151">payback e emissões de CO₂</text>
+<rect x="870" y="520" width="230" height="118" rx="10" fill="#ffffff" stroke="#1d4ed8" stroke-width="2"/>
+<text x="882" y="546" font-size="16" font-weight="700" fill="#111827">Dashboard</text>
+<text x="882" y="570" font-size="14" fill="#374151">kWh/mês, economia (%), R$/mês,</text>
+<text x="882" y="590" font-size="14" fill="#374151">% renovável, kg CO₂/ano e</text>
+<text x="882" y="610" font-size="14" fill="#374151">horas em modo economia</text>
+<rect x="590" y="668" width="230" height="70" rx="10" fill="#f9fafb" stroke="#6b7280" stroke-width="2" stroke-dasharray="6 4"/>
+<text x="602" y="694" font-size="16" font-weight="700" fill="#111827">Dados de referência</text>
+<text x="602" y="718" font-size="14" fill="#374151">Tarifa Enel, CRESESB, MCTI</text>
+<path d="M 260 150 L 285 150 L 285 175 L 310 175" fill="none" stroke="#c2410c" stroke-width="3" marker-end="url(#ponta-energia)"/>
+<path d="M 260 246 L 285 246 L 285 221 L 310 221" fill="none" stroke="#c2410c" stroke-width="3" marker-end="url(#ponta-energia)"/>
+<path d="M 540 198 L 590 198" fill="none" stroke="#c2410c" stroke-width="3" marker-end="url(#ponta-energia)"/>
+<path d="M 425 278 L 425 350" fill="none" stroke="#1d4ed8" stroke-width="3" stroke-dasharray="7 5" marker-end="url(#ponta-dados)"/>
+<text x="448" y="336" font-size="13" font-style="italic" fill="#1d4ed8" text-anchor="start">medição</text>
+<path d="M 425 466 L 425 520" fill="none" stroke="#1d4ed8" stroke-width="3" stroke-dasharray="7 5" marker-end="url(#ponta-dados)"/>
+<text x="448" y="510" font-size="13" font-style="italic" fill="#1d4ed8" text-anchor="start">leituras</text>
+<path d="M 870 408 L 820 408" fill="none" stroke="#1d4ed8" stroke-width="3" stroke-dasharray="7 5" marker-end="url(#ponta-dados)"/>
+<path d="M 540 579 L 590 579" fill="none" stroke="#1d4ed8" stroke-width="3" stroke-dasharray="7 5" marker-end="url(#ponta-dados)"/>
+<path d="M 705 466 L 705 520" fill="none" stroke="#1d4ed8" stroke-width="3" stroke-dasharray="7 5" marker-end="url(#ponta-dados)"/>
+<text x="728" y="510" font-size="13" font-style="italic" fill="#1d4ed8" text-anchor="start">estado e eventos</text>
+<path d="M 820 579 L 870 579" fill="none" stroke="#1d4ed8" stroke-width="3" stroke-dasharray="7 5" marker-end="url(#ponta-dados)"/>
+<path d="M 705 668 L 705 638" fill="none" stroke="#1d4ed8" stroke-width="3" stroke-dasharray="7 5" marker-end="url(#ponta-dados)"/>
+<path d="M 705 350 L 705 278" fill="none" stroke="#15803d" stroke-width="3" stroke-dasharray="7 5" marker-end="url(#ponta-comando)"/>
+<text x="728" y="336" font-size="13" font-style="italic" fill="#15803d" text-anchor="start">comando de dimerização</text>
+</svg>
