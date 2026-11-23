@@ -1,0 +1,83 @@
+{
+  "A0": {
+    "id": "A0",
+    "nome": "A0 Convencional",
+    "nome_completo": "A0 Situação atual: vapor de sódio 70 W com reator",
+    "descricao": "Lâmpadas de vapor de sódio de alta pressão (70 W) com reator eletromagnético, acesas das 18h às 6h aproximadamente por relé fotoelétrico, sem dimerização.",
+    "renovavel": false,
+    "viabilidade": "Já instalada. Não exige obra. Depende de reposição periódica de lâmpadas e reatores.",
+    "impactos_ambientais": "Maior consumo de eletricidade da rede. Cada lâmpada contém cerca de 16 mg de mercúrio, que exige descarte específico. Luz amarelada de menor reprodução de cor.",
+    "beneficios": [
+      "Sem investimento inicial",
+      "Tecnologia conhecida pela equipe de manutenção"
+    ],
+    "limitacoes": [
+      "Maior consumo e maior custo mensal de energia",
+      "Troca de lâmpada a cada cerca de 5,5 anos",
+      "Mercúrio na lâmpada",
+      "Sem dados de consumo nem dimerização"
+    ]
+  },
+  "A1": {
+    "id": "A1",
+    "nome": "A1 LED na rede",
+    "nome_completo": "A1 Retrofit para LED na rede (30 W, sem dimerização)",
+    "descricao": "Troca das luminárias antigas por luminárias LED de 30 W nos mesmos postes, alimentadas pela rede, ligadas a noite toda em potência plena.",
+    "renovavel": false,
+    "viabilidade": "Alta. Reaproveita postes e rede existentes. Troca rápida, sem obra civil. Exige luminária com certificação do Inmetro e projeto fotométrico simples para manter a iluminância.",
+    "impactos_ambientais": "Reduz o consumo da rede e as emissões associadas. Elimina o mercúrio das lâmpadas de sódio. Os módulos de LED têm vida longa, o que reduz resíduos.",
+    "beneficios": [
+      "Menor payback entre as alternativas",
+      "Menos manutenção (vida útil de cerca de 11 anos)",
+      "Melhor reprodução de cor",
+      "Base para as alternativas A2 e A3"
+    ],
+    "limitacoes": [
+      "Continua dependente da rede, sem parcela renovável própria",
+      "Sem dimerização, o LED fica em potência plena a noite toda",
+      "Qualidade varia entre fabricantes; exige especificação e certificação"
+    ]
+  },
+  "A2": {
+    "id": "A2",
+    "nome": "A2 LED + FV na rede",
+    "nome_completo": "A2 LED com sensores e dimerização + sistema fotovoltaico conectado à rede (renovável)",
+    "descricao": "A1 mais sensores de presença e fotocélula com dimerização, e um pequeno sistema fotovoltaico (2 módulos de 550 Wp) que gera créditos de energia compensados na fatura de iluminação.",
+    "renovavel": true,
+    "viabilidade": "Média a alta. Exige local com sol sem sombra para os módulos (por exemplo, telhado de um equipamento público próximo), pedido de acesso à Enel e enquadramento como geração distribuída com compensação em unidade consumidora da prefeitura. A regra para iluminação pública não foi confirmada.",
+    "impactos_ambientais": "Maior redução de consumo da rede entre as alternativas conectadas. A parcela FV evita eletricidade do SIN, que já é majoritariamente renovável, então o ganho de CO2 por kWh é pequeno; a fabricação dos módulos tem pegada própria (42,9 g CO2e/kWh na literatura).",
+    "beneficios": [
+      "Menor consumo líquido da rede",
+      "Cerca de 95% da energia do ponto compensada por geração própria",
+      "Dados de presença e consumo para o dashboard",
+      "Mantém a rede como reserva: sem risco de apagar por falta de sol"
+    ],
+    "limitacoes": [
+      "Investimento maior que A1",
+      "Depende de local para os módulos e de autorização da distribuidora",
+      "Compensação reduzida pelo Fio B (60% em 2026) e sujeita a mudança de regra",
+      "Inversor precisa ser trocado em cerca de 10 a 15 anos (não incluído no payback)"
+    ]
+  },
+  "A3": {
+    "id": "A3",
+    "nome": "A3 LED solar autônomo",
+    "nome_completo": "A3 Luminárias LED solares autônomas com sensores e dimerização (renovável)",
+    "descricao": "Cada ponto tem seu próprio painel fotovoltaico, bateria de lítio ferro fosfato e controlador, sem usar a rede elétrica.",
+    "renovavel": true,
+    "viabilidade": "Média. Exige poste com orientação para o norte, sem sombra de árvores ou prédios, e estrutura que aguente painel e bateria. Faz mais sentido onde não há rede ou o custo de ligar à rede é alto. No caso-modelo a rede já existe.",
+    "impactos_ambientais": "Zera o consumo da rede no ponto. A bateria tem pegada de fabricação e precisa ser trocada a cada cerca de 8 anos; o descarte exige logística reversa. O balanço de carbono considerando a bateria não foi quantificado.",
+    "beneficios": [
+      "100% da energia vem do sol, sem conta de luz",
+      "Continua acesa em queda da rede",
+      "Dispensa extensão de rede em locais novos"
+    ],
+    "limitacoes": [
+      "Maior investimento (painel, bateria e controlador em cada poste)",
+      "Troca de bateria a cada cerca de 8 anos pesa mais que a economia de energia",
+      "Autonomia limitada em dias nublados seguidos",
+      "Risco de furto de painel e bateria",
+      "Desempenho menor em junho e julho, meses de menor irradiação"
+    ]
+  }
+}

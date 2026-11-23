@@ -1,0 +1,5 @@
+id,nome,potencia_ponto_w,carga_kwh_mes,rede_kwh_mes,economia_rede_kwh_mes,economia_rede_pct,participacao_renovavel_pct,custo_operacao_rs_mes,economia_rs_mes,capex_rs,payback_anos,economia_liquida_10anos_rs,emissoes_evitadas_kg_ano,emissoes_evitadas_liquidas_kg_ano,horas_modo_economia_dia
+A0,A0 Convencional,84.5,493.48,493.48,0.0,0.0,0.0,262.9159,0.0,0.0,,0.0,0.0,0.0,0.0
+A1,A1 LED na rede,30.0,175.2,175.2,318.28,64.497,0.0,86.7315,176.1844,5920.0,2.8001,15222.1334,176.0725,176.0725,0.0
+A2,A2 LED + FV na rede,30.0,126.071,6.3121,487.1679,98.7209,94.9932,24.6896,238.2263,11540.0,4.0368,17047.1575,269.5013,207.8494,7.0
+A3,A3 LED solar autônomo,30.0,126.071,0.0,493.48,100.0,100.0,313.3333,-50.4174,56960.0,,-63010.0868,272.9931,208.0918,7.0

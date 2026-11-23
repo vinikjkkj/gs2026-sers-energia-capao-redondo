@@ -1,0 +1,22 @@
+premissa,descricao,unidade,base,minimo,maximo,payback_a1_min,payback_a1_max,payback_a2_min,payback_a2_max,payback_a3_min,payback_a3_max,evitadas_liq_a2_min,evitadas_liq_a2_max
+preco_luminaria_led,Preço da luminária LED de 30 W,R$/un,250.0,150.0,450.0,2.043,4.314,3.477,5.156,,,207.849,207.849
+fator_tarifa_encargos,Multiplicador da tarifa para tributos e bandeira tarifária,fator,1.0,0.9,1.4,3.038,2.131,4.414,3.008,,,207.849,207.849
+custo_instalacao_ponto,Mão de obra de troca da luminária em poste existente,R$/ponto,120.0,60.0,250.0,2.346,3.784,3.701,4.764,,,207.849,207.849
+custo_troca_hps,"Custo de uma troca de lâmpada HPS (lâmpada, reator/ignitor rateado e mão de obra)",R$/troca,200.0,120.0,350.0,3.148,2.32,4.396,3.5,,,207.849,207.849
+custo_sensor_dimmer,"Sensor de presença, fotocélula e driver dimerizável por ponto",R$/ponto,90.0,50.0,200.0,2.8,2.8,3.813,4.652,,,207.849,207.849
+p_led,Potência da luminária LED adotada por ponto (com driver),W,30.0,27.0,40.0,2.684,3.271,3.985,4.806,,,213.981,188.462
+custo_fv_wp,"Custo instalado do sistema FV conectado à rede, porte muito pequeno",R$/Wp,3.8,2.45,4.5,2.8,2.8,3.499,4.318,,,207.849,207.849
+vida_hps_h,Vida útil da lâmpada HPS,h,24000.0,16000.0,32000.0,2.46,3.008,3.663,4.254,,,207.849,207.849
+horas_noite,Horas de funcionamento por noite (pôr do sol ao nascer do sol),h/dia,12.0,11.0,13.0,3.072,2.573,4.379,3.789,,,192.858,222.522
+om_led_ponto,Manutenção anual da luminária LED (inspeção e limpeza),R$/ponto/ano,8.0,4.0,20.0,2.718,3.08,3.948,4.327,,,207.849,207.849
+p_reator,Perda do reator e equipamentos auxiliares da lâmpada HPS,W,12.0,8.0,15.0,2.971,2.684,4.216,3.912,,,194.927,217.541
+fator_compensacao,Fração do valor da tarifa efetivamente compensada pela geração FV (Fio B),fração,0.85,0.75,1.0,2.8,2.8,4.127,3.909,,,207.849,207.849
+fracao_presenca,Fração do tempo da madrugada em que há presença detectada (luz a 100%),fração,0.15,0.05,0.3,2.8,2.8,3.99,4.117,,,211.775,201.913
+pr_ongrid,Taxa de desempenho (PR) do sistema FV conectado à rede,fração,0.78,0.7,0.85,2.8,2.8,4.115,3.998,,,207.378,208.092
+pr_offgrid,Taxa de desempenho (PR) do sistema FV autônomo com bateria,fração,0.65,0.55,0.75,2.8,2.8,4.037,4.037,,,207.849,207.849
+autonomia_noites,Autonomia da bateria sem sol (noites),noites,2.0,1.5,3.0,2.8,2.8,4.037,4.037,,,207.849,207.849
+preco_painel_wp,Preço do módulo FV avulso (sistema autônomo),R$/Wp,3.0,2.0,4.5,2.8,2.8,4.037,4.037,,,207.849,207.849
+preco_bateria_wh,Preço da bateria LiFePO4,R$/Wh,2.4,1.4,3.5,2.8,2.8,4.037,4.037,,,207.849,207.849
+custo_adaptacao_poste,"Adaptação do poste existente para painel e bateria (braço, caixa, reforço)",R$/ponto,600.0,300.0,2000.0,2.8,2.8,4.037,4.037,,,207.849,207.849
+vida_bateria_anos,Vida útil da bateria LiFePO4 em ciclo diário,anos,8.0,6.0,12.0,2.8,2.8,4.037,4.037,,,207.849,207.849
+fe_sin,"Fator médio de emissão de CO2 do SIN, média anual de 2025",tCO2/MWh,0.0461,0.0385,0.1355,2.8,2.8,4.037,4.037,,,163.42,730.483
