@@ -129,7 +129,7 @@ def montar():
 
 
 def main():
-    with open(SVG, "w", encoding="utf-8") as f:
+    with open(SVG, "w", encoding="utf-8", newline="\n") as f:
         f.write(montar())
     print("SVG gravado:", SVG)
     if not os.path.exists(CHROME):

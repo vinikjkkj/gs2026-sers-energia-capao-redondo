@@ -887,10 +887,10 @@ window.RESULTADOS = {
       "maximo": "20",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Caso-modelo simulado do grupo",
+      "fonte": "Caso-modelo simulado do autor",
       "url": "",
       "data_acesso": "",
-      "justificativa": "Praça hipotética. O número é um valor intermediário adotado para o estudo; o grupo deve trocá-lo pelo levantamento real do local (camada de iluminação do GeoSampa ou visita)."
+      "justificativa": "Praça hipotética. O número é um valor intermediário adotado para o estudo; deve ser trocado pelo levantamento real do local (camada de iluminação do GeoSampa ou visita)."
     },
     {
       "id": "n_pontos_onibus",
@@ -901,7 +901,7 @@ window.RESULTADOS = {
       "maximo": "8",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Caso-modelo simulado do grupo",
+      "fonte": "Caso-modelo simulado do autor",
       "url": "",
       "data_acesso": "",
       "justificativa": "Quatro pontos de ônibus no entorno da praça, um ponto de luz em cada. Valor simulado, a ser substituído pelo levantamento real."
@@ -999,7 +999,7 @@ window.RESULTADOS = {
       "maximo": "0.8",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo",
+      "fonte": "Premissa do autor",
       "url": "",
       "data_acesso": "",
       "justificativa": "Luminárias antigas perdem parte do fluxo no refletor e no difusor. A faixa de 0,60 a 0,80 é uma estimativa; serve só para verificar que o LED escolhido entrega pelo menos a mesma luz."
@@ -1013,7 +1013,7 @@ window.RESULTADOS = {
       "maximo": "32000",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo (valor típico de mercado, não confirmado na ficha consultada)",
+      "fonte": "Premissa do autor (valor típico de mercado, não confirmado na ficha consultada)",
       "url": "",
       "data_acesso": "",
       "justificativa": "Usada para estimar a frequência de troca: 24.000 h / 4.380 h por ano = 5,5 anos."
@@ -1027,7 +1027,7 @@ window.RESULTADOS = {
       "maximo": "350",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo",
+      "fonte": "Premissa do autor",
       "url": "",
       "data_acesso": "",
       "justificativa": "Estimativa de ordem de grandeza: lâmpada, parte do equipamento auxiliar e deslocamento com cesto aéreo. Não há orçamento real."
@@ -1069,10 +1069,10 @@ window.RESULTADOS = {
       "maximo": "40",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Calculada pelo grupo a partir do fluxo (ver equivalência no script)",
+      "fonte": "Calculada pelo autor a partir do fluxo (ver equivalência no script)",
       "url": "",
       "data_acesso": "",
-      "justificativa": "Fluxo útil da luminária antiga = 5.600 lm x 0,70 = 3.920 lm. Com 150 lm/W bastariam 26 W; adotamos 30 W (4.500 lm), tamanho comercial com folga de 15%."
+      "justificativa": "Fluxo útil da luminária antiga = 5.600 lm x 0,70 = 3.920 lm. Com 150 lm/W bastariam 26 W; adotei 30 W (4.500 lm), tamanho comercial com folga de 15%."
     },
     {
       "id": "vida_led_h",
@@ -1100,7 +1100,7 @@ window.RESULTADOS = {
       "fonte": "Premissa ancorada na Ata 137/2026 (R$ 291,00 por luminária LED de 120 W)",
       "url": "https://www.gov.br/casacivil/pt-br/acesso-a-informacao/licitacoes-e-contratos/secretaria-de-administracao/atas-de-registro-de-precos/2026/ata-no-137-2026/2-ata-no-137-2026-bmb.pdf",
       "data_acesso": "2026-11-23",
-      "justificativa": "O preço registrado em ata federal para o modelo de 120 W dá a ordem de grandeza. Para 30 W com certificação do Inmetro, em compra pequena, adotamos R$ 250 (faixa R$ 150 a R$ 450). Não foi encontrado preço público de um modelo de 30 W."
+      "justificativa": "O preço registrado em ata federal para o modelo de 120 W dá a ordem de grandeza. Para 30 W com certificação do Inmetro, em compra pequena, adotei R$ 250 (faixa R$ 150 a R$ 450). Não foi encontrado preço público de um modelo de 30 W."
     },
     {
       "id": "custo_instalacao_ponto",
@@ -1111,7 +1111,7 @@ window.RESULTADOS = {
       "maximo": "250",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo",
+      "fonte": "Premissa do autor",
       "url": "",
       "data_acesso": "",
       "justificativa": "Troca de luminária em poste já instalado, sem obra civil. Valor estimado."
@@ -1125,7 +1125,7 @@ window.RESULTADOS = {
       "maximo": "20",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo",
+      "fonte": "Premissa do autor",
       "url": "",
       "data_acesso": "",
       "justificativa": "Estimativa: inspeção e limpeza periódicas; sem troca de lâmpada durante a vida útil."
@@ -1167,10 +1167,10 @@ window.RESULTADOS = {
       "maximo": "1.4",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo",
+      "fonte": "Premissa do autor",
       "url": "",
       "data_acesso": "",
-      "justificativa": "Pela prática da ANEEL as tarifas homologadas não incluem tributos nem bandeira tarifária; a página da Enel não diz isso expressamente e não confirmamos como a prefeitura é cobrada. O valor-base 1,00 (sem esses adicionais) é conservador para o payback; a faixa 0,90 a 1,40 é de teste, não um dado."
+      "justificativa": "Pela prática da ANEEL as tarifas homologadas não incluem tributos nem bandeira tarifária; a página da Enel não diz isso expressamente e não confirmei como a prefeitura é cobrada. O valor-base 1,00 (sem esses adicionais) é conservador para o payback; a faixa 0,90 a 1,40 é de teste, não um dado."
     },
     {
       "id": "irradiacao_sundata",
@@ -1195,7 +1195,7 @@ window.RESULTADOS = {
       "maximo": "0.85",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo (faixa usual de projeto)",
+      "fonte": "Premissa do autor (faixa usual de projeto)",
       "url": "",
       "data_acesso": "",
       "justificativa": "Perdas por temperatura, sujeira, cabos e inversor. Não há medição no local."
@@ -1209,7 +1209,7 @@ window.RESULTADOS = {
       "maximo": "0.75",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo",
+      "fonte": "Premissa do autor",
       "url": "",
       "data_acesso": "",
       "justificativa": "Menor que a do sistema na rede por incluir perdas do controlador e da carga e descarga da bateria."
@@ -1223,7 +1223,7 @@ window.RESULTADOS = {
       "maximo": "550",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo",
+      "fonte": "Premissa do autor",
       "url": "",
       "data_acesso": "",
       "justificativa": "Módulos de 550 Wp são comuns no varejo; usado só para arredondar o número de módulos."
@@ -1240,7 +1240,7 @@ window.RESULTADOS = {
       "fonte": "Radar Solfácil (via Cenário Energia, 09/06/2026): média nacional residencial R$ 2,45/Wp; matéria da UAI (out/2026, vista só em resultado de busca): R$ 3.400 a R$ 4.200 por kWp em 2026",
       "url": "https://cenarioenergia.com.br/2026/06/09/preco-do-watt-pico-residencial-recua-7-em-um-ano-e-abre-janela-de-oportunidade-na-mmgd/",
       "data_acesso": "2026-11-23",
-      "justificativa": "Para um sistema de cerca de 1 kWp os custos fixos de projeto e homologação pesam mais que na média, por isso adotamos R$ 3,80/Wp, dentro da faixa de R$ 3,40 a R$ 4,20 por kWp da matéria. Mínimo da faixa: média nacional."
+      "justificativa": "Para um sistema de cerca de 1 kWp os custos fixos de projeto e homologação pesam mais que na média, por isso adotei R$ 3,80/Wp, dentro da faixa de R$ 3,40 a R$ 4,20 por kWp da matéria. Mínimo da faixa: média nacional."
     },
     {
       "id": "fator_compensacao",
@@ -1265,7 +1265,7 @@ window.RESULTADOS = {
       "maximo": "0.02",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo",
+      "fonte": "Premissa do autor",
       "url": "",
       "data_acesso": "",
       "justificativa": "Limpeza e inspeção; não inclui troca de inversor (limitação declarada)."
@@ -1282,7 +1282,7 @@ window.RESULTADOS = {
       "fonte": "IEA PVPS Task 12, Fact Sheet, atualização 2021 (sistema residencial na Europa, 975 kWh/kWp por ano)",
       "url": "https://www.iea-pvps.org/wp-content/uploads/2022/11/Fact-Sheet-IEA-PVPS-T12-23-LCA-update-2022.pdf",
       "data_acesso": "2026-11-23",
-      "justificativa": "Em local de maior irradiação o valor por kWh seria menor; usamos 42,9 como valor conservador."
+      "justificativa": "Em local de maior irradiação o valor por kWh seria menor; usei 42,9 como valor conservador."
     },
     {
       "id": "autonomia_noites",
@@ -1293,7 +1293,7 @@ window.RESULTADOS = {
       "maximo": "3",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo; a luminária Intelbras LSI 4800 anuncia até 3 noites em modo sensor",
+      "fonte": "Premissa do autor; a luminária Intelbras LSI 4800 anuncia até 3 noites em modo sensor",
       "url": "https://www.kabum.com.br/produto/475566/luminaria-solar-integrada-intelbras-lsi-4800-lm-4848040",
       "data_acesso": "2026-11-23",
       "justificativa": "Duas noites cobrem dias nublados seguidos em São Paulo."
@@ -1307,7 +1307,7 @@ window.RESULTADOS = {
       "maximo": "0.9",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo",
+      "fonte": "Premissa do autor",
       "url": "",
       "data_acesso": "",
       "justificativa": "Valor usual de projeto para preservar a vida da bateria."
@@ -1321,7 +1321,7 @@ window.RESULTADOS = {
       "maximo": "4.5",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo",
+      "fonte": "Premissa do autor",
       "url": "",
       "data_acesso": "",
       "justificativa": "Compra avulsa de módulo pequeno, sem instalação. Estimativa."
@@ -1335,7 +1335,7 @@ window.RESULTADOS = {
       "maximo": "3.5",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo",
+      "fonte": "Premissa do autor",
       "url": "",
       "data_acesso": "",
       "justificativa": "Ordem de grandeza de baterias LiFePO4 de 12,8 V no varejo brasileiro. Sem cotação."
@@ -1349,7 +1349,7 @@ window.RESULTADOS = {
       "maximo": "700",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo",
+      "fonte": "Premissa do autor",
       "url": "",
       "data_acesso": "",
       "justificativa": "Estimativa."
@@ -1363,7 +1363,7 @@ window.RESULTADOS = {
       "maximo": "2000",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo",
+      "fonte": "Premissa do autor",
       "url": "",
       "data_acesso": "",
       "justificativa": "Reaproveita o poste existente. Se for preciso poste novo (cerca de 6 m, como o poste solar do mercado), o custo sobe para a faixa máxima."
@@ -1377,7 +1377,7 @@ window.RESULTADOS = {
       "maximo": "700",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo",
+      "fonte": "Premissa do autor",
       "url": "",
       "data_acesso": "",
       "justificativa": "Estimativa."
@@ -1391,7 +1391,7 @@ window.RESULTADOS = {
       "maximo": "12",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo",
+      "fonte": "Premissa do autor",
       "url": "",
       "data_acesso": "",
       "justificativa": "Cerca de 3.000 ciclos a 80% de descarga; valor típico, não confirmado em ficha."
@@ -1405,7 +1405,7 @@ window.RESULTADOS = {
       "maximo": "100",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo",
+      "fonte": "Premissa do autor",
       "url": "",
       "data_acesso": "",
       "justificativa": "Limpeza do painel e inspeção."
@@ -1433,7 +1433,7 @@ window.RESULTADOS = {
       "maximo": "6",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo",
+      "fonte": "Premissa do autor",
       "url": "",
       "data_acesso": "",
       "justificativa": "Período de maior movimento na praça e nos pontos de ônibus."
@@ -1447,7 +1447,7 @@ window.RESULTADOS = {
       "maximo": "8",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo",
+      "fonte": "Premissa do autor",
       "url": "",
       "data_acesso": "",
       "justificativa": "O restante da noite (12 h menos as outras faixas) fica a 100% ao amanhecer."
@@ -1475,7 +1475,7 @@ window.RESULTADOS = {
       "maximo": "0.3",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo",
+      "fonte": "Premissa do autor",
       "url": "",
       "data_acesso": "",
       "justificativa": "Sem contagem de pessoas. Será medida pelos sensores depois da instalação."
@@ -1489,7 +1489,7 @@ window.RESULTADOS = {
       "maximo": "3.0",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo",
+      "fonte": "Premissa do autor",
       "url": "",
       "data_acesso": "",
       "justificativa": "Sensor PIR, fotocélula e módulo de comunicação."
@@ -1503,7 +1503,7 @@ window.RESULTADOS = {
       "maximo": "200",
       "tipo": "premissa",
       "usado_no_calculo": "sim",
-      "fonte": "Premissa do grupo",
+      "fonte": "Premissa do autor",
       "url": "",
       "data_acesso": "",
       "justificativa": "Estimativa. Sem cotação."
@@ -1548,7 +1548,7 @@ window.RESULTADOS = {
       "fonte": "Prefeitura de São Paulo (SMUL/ILUME), notícia de 28/07/2021: 512 mil pontos, 83% do parque, de mais de 600 mil pontos",
       "url": "https://prefeitura.sp.gov.br/licenciamento/w/noticias/315719",
       "data_acesso": "2026-11-23",
-      "justificativa": "Dado de 2021, sem atualização encontrada. Mostra que ainda existem pontos fora do LED: o caso-modelo assume que a praça é um deles. O grupo deve conferir no GeoSampa."
+      "justificativa": "Dado de 2021, sem atualização encontrada. Mostra que ainda existem pontos fora do LED: o caso-modelo assume que a praça é um deles. Convém conferir no GeoSampa."
     }
   ]
 };

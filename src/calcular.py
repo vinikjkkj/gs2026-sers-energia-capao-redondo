@@ -31,7 +31,7 @@ ARQ_QUALITATIVO = os.path.join(RAIZ, "dados", "qualitativo.json")
 ARQ_README = os.path.join(RAIZ, "README.md")
 
 IDS = ["A0", "A1", "A2", "A3"]
-ANOS_PAYBACK_MAX = 50  # acima disso consideramos que "nao se paga"
+ANOS_PAYBACK_MAX = 50  # acima disso considera-se que "nao se paga"
 
 
 # ---------------------------------------------------------------- leitura
@@ -458,9 +458,9 @@ def gravar(res, sens, cenarios, linhas):
         ],
     }
     texto = json.dumps(saida, ensure_ascii=False, indent=2)
-    with open(os.path.join(RAIZ, "resultados", "resultados.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(RAIZ, "resultados", "resultados.json"), "w", encoding="utf-8", newline="\n") as f:
         f.write(texto + "\n")
-    with open(os.path.join(RAIZ, "dashboard", "data", "resultados.js"), "w", encoding="utf-8") as f:
+    with open(os.path.join(RAIZ, "dashboard", "data", "resultados.js"), "w", encoding="utf-8", newline="\n") as f:
         f.write("// Gerado por src/calcular.py a partir de dados/premissas.csv. Não editar à mão.\n")
         f.write("window.RESULTADOS = " + texto + ";\n")
 
@@ -469,13 +469,13 @@ def gravar(res, sens, cenarios, linhas):
               "capex_rs", "payback_anos", "economia_liquida_10anos_rs", "emissoes_evitadas_kg_ano",
               "emissoes_evitadas_liquidas_kg_ano", "horas_modo_economia_dia"]
     with open(os.path.join(RAIZ, "resultados", "comparativo.csv"), "w", encoding="utf-8", newline="") as f:
-        w = csv.writer(f)
+        w = csv.writer(f, lineterminator="\n")
         w.writerow(campos)
         for a in res["alternativas"]:
             w.writerow([("" if a[c] is None else (round(a[c], 4) if isinstance(a[c], float) else a[c])) for c in campos])
 
     with open(os.path.join(RAIZ, "resultados", "sensibilidade.csv"), "w", encoding="utf-8", newline="") as f:
-        w = csv.writer(f)
+        w = csv.writer(f, lineterminator="\n")
         w.writerow(["premissa", "descricao", "unidade", "base", "minimo", "maximo", "payback_a1_min", "payback_a1_max",
                     "payback_a2_min", "payback_a2_max", "payback_a3_min", "payback_a3_max",
                     "evitadas_liq_a2_min", "evitadas_liq_a2_max"])
@@ -484,7 +484,7 @@ def gravar(res, sens, cenarios, linhas):
             w.writerow([t["id"], t["descricao"], t["unidade"], t["base"], t["minimo"], t["maximo"], *vals])
 
     tabelas = tabelas_markdown(res, sens, cenarios)
-    with open(os.path.join(RAIZ, "resultados", "comparativo.md"), "w", encoding="utf-8") as f:
+    with open(os.path.join(RAIZ, "resultados", "comparativo.md"), "w", encoding="utf-8", newline="\n") as f:
         f.write("# Comparação das alternativas (gerado por src/calcular.py)\n\n")
         for chave, titulo in (("resumo", "Resumo"), ("consumo", "Consumo e energia"), ("custos", "Custos e payback"), ("emissoes", "Emissões"),
                               ("qualitativo", "Viabilidade, impactos, benefícios e limitações"),
@@ -503,7 +503,7 @@ def atualizar_readme(tabelas):
         texto, qtd = padrao.subn(lambda m: m.group(1) + tabela + m.group(2), texto)
         if qtd == 0:
             print(f"aviso: marcador AUTO:{chave} não encontrado no README")
-    with open(ARQ_README, "w", encoding="utf-8") as f:
+    with open(ARQ_README, "w", encoding="utf-8", newline="\n") as f:
         f.write(texto)
     print("README.md atualizado.")
 

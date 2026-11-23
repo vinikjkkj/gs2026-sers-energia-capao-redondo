@@ -1,22 +1,22 @@
 # Neighborhood Action Dashboard: módulo de energia (SERS)
 
 **Contribuição de Soluções em Energias Renováveis e Sustentáveis (SERS) ao desafio integrador Neighborhood Action Dashboard (CitizenTech).**
-FIAP, Ciência da Computação, 1º ano, Global Solution 2026.2, turma [[TURMA]].
+FIAP, Ciência da Computação, 1º ano, Global Solution 2026.2, turma 1CCPS.
 
-> Este repositório contém **somente a contribuição de SERS**. Se o grupo usar um repositório compartilhado com outras disciplinas, esta pasta é o módulo de energia.
+> Este repositório contém **somente a contribuição de SERS**. Se este módulo for incorporado a um repositório compartilhado com outras disciplinas, esta pasta é o módulo de energia.
 > O bairro é real (Capão Redondo, São Paulo/SP), mas **a praça, os pontos de ônibus, as quantidades e os sensores são um caso-modelo simulado**. Economias, geração solar e emissões evitadas são **projeções condicionadas às premissas** de [`dados/premissas.csv`](dados/premissas.csv), não resultados garantidos.
 
-## 1. Integrantes
+## 1. Autor
 
-| Nome completo | RM |
-|---|---|
-| [[NOME_1]] | [[RM_1]] |
-| [[NOME_2]] | [[RM_2]] |
-| [[NOME_3]] | [[RM_3]] |
+Entrega individual.
+
+| Nome completo | RM | Turma |
+|---|---|---|
+| Vinícius Alves de Souza | 575576 | 1CCPS |
 
 ## 2. Resumo
 
-Comparamos **quatro formas de atender à mesma necessidade de iluminação** (16 pontos de luz, 12 h por noite, 365 dias, período de referência de 1 ano):
+Este estudo compara **quatro formas de atender à mesma necessidade de iluminação** (16 pontos de luz, 12 h por noite, 365 dias, período de referência de 1 ano):
 
 | Id | Alternativa | Fonte de energia |
 |---|---|---|
@@ -44,9 +44,9 @@ Leitura: o LED sozinho (A1) já corta 64,5% da energia e se paga mais rápido. S
 
 ## 3. Diagnóstico do problema
 
-**Espaço escolhido.** Uma praça comunitária do Capão Redondo e quatro pontos de ônibus do entorno, somando 16 pontos de iluminação pública (12 na praça e 4 nos pontos de ônibus). O Capão Redondo, na Zona Sul de São Paulo (Subprefeitura de Campo Limpo), tinha 270.767 habitantes no Censo 2022 do IBGE (fonte secundária: citypopulation.de; ver seção 4). A praça em si é hipotética: o número de pontos e a localização exata são valores de estudo que o grupo deve substituir por um levantamento real.
+**Espaço escolhido.** Uma praça comunitária do Capão Redondo e quatro pontos de ônibus do entorno, somando 16 pontos de iluminação pública (12 na praça e 4 nos pontos de ônibus). O Capão Redondo, na Zona Sul de São Paulo (Subprefeitura de Campo Limpo), tinha 270.767 habitantes no Censo 2022 do IBGE (fonte secundária: citypopulation.de; ver seção 4). A praça em si é hipotética: o número de pontos e a localização exata são valores de estudo, a substituir por um levantamento real.
 
-**Problema energético.** Parte do parque de iluminação pública de São Paulo ainda não foi trocada por LED. A Prefeitura informou em julho de 2021 que 512 mil pontos (83% do parque, de mais de 600 mil) já estavam remodelados; não encontramos dado mais recente. O caso-modelo assume que a praça está entre os pontos que ainda usam **vapor de sódio de alta pressão (70 W)**. Essas lâmpadas consomem cerca de 84,5 W por ponto contando o reator, ficam acesas a noite toda em potência plena, contêm mercúrio (16,3 mg por lâmpada na ficha da Signify) e precisam de troca a cada cerca de 5,5 anos. Não há dados de consumo nem de uso: a luz fica acesa com a mesma intensidade com ou sem pessoas.
+**Problema energético.** Parte do parque de iluminação pública de São Paulo ainda não foi trocada por LED. A Prefeitura informou em julho de 2021 que 512 mil pontos (83% do parque, de mais de 600 mil) já estavam remodelados; não encontrei dado mais recente. O caso-modelo assume que a praça está entre os pontos que ainda usam **vapor de sódio de alta pressão (70 W)**. Essas lâmpadas consomem cerca de 84,5 W por ponto contando o reator, ficam acesas a noite toda em potência plena, contêm mercúrio (16,3 mg por lâmpada na ficha da Signify) e precisam de troca a cada cerca de 5,5 anos. Não há dados de consumo nem de uso: a luz fica acesa com a mesma intensidade com ou sem pessoas.
 
 **Público beneficiado.** Quem usa a praça e espera ônibus à noite, moradores do entorno e a própria prefeitura, que paga a conta de iluminação pública (o art. 451 da REN ANEEL 1.000/2021 atribui ao poder público municipal o projeto, a implantação, a expansão, a operação e a manutenção da iluminação pública).
 
@@ -64,7 +64,7 @@ Todo valor usado nos cálculos está em [`dados/premissas.csv`](dados/premissas.
 
 - **dado confirmado**: valor lido na fonte em 23/11/2026;
 - **dado parcial**: fonte consultada, mas o valor veio de resumo de busca ou de fonte secundária;
-- **premissa**: valor adotado pelo grupo, declarado com faixa plausível e justificativa. **Premissa não é fato.**
+- **premissa**: valor adotado pelo autor, declarado com faixa plausível e justificativa. **Premissa não é fato.**
 
 Dados confirmados (acesso em 23/11/2026):
 
@@ -82,7 +82,7 @@ Dados confirmados (acesso em 23/11/2026):
 
 Dados parciais: população do Capão Redondo (270.767, Censo 2022, [citypopulation.de](https://www.citypopulation.de/en/brazil/saopaulocity/35503081900__capão_redondo), que cita o IBGE); perda de 12 W do reator Demape RVS AFP 70 W (visto em resultado de busca; ficha não aberta); custo do FV (Radar Solfácil de R$ 2,45/Wp como média nacional residencial, via [Cenário Energia, 09/06/2026](https://cenarioenergia.com.br/2026/06/09/preco-do-watt-pico-residencial-recua-7-em-um-ano-e-abre-janela-de-oportunidade-na-mmgd/), e faixa de R$ 3.400 a R$ 4.200 por kWp em matéria da [UAI](https://www.uai.com.br/?p=183347) de outubro de 2026, vista só em resultado de busca); escalonamento do Fio B da [Lei 14.300/2022](https://www2.camara.leg.br/legin/fed/lei/2022/lei-14300-6-janeiro-2022-792217-norma-pl.html) (60% em 2026), confirmado em fontes secundárias sem leitura do texto da lei.
 
-**O que não foi possível confirmar e virou premissa declarada:** número de pontos e localização da praça; tempo médio anual de iluminação de São Paulo na RH ANEEL 2.590/2019 (usamos 12 h, faixa de 11 a 13 h); preço de uma luminária LED de 30 W (R$ 250, faixa de R$ 150 a R$ 450); preço de bateria LiFePO4, de painel avulso, de poste e de mão de obra; vida da lâmpada de sódio e da bateria; peso do Fio B na tarifa B4a e regra de compensação para iluminação pública (fator de 0,85); tributos e bandeira tarifária (fora da premissa-base); perfil de uso da praça (fração de tempo com presença); taxa de desempenho dos sistemas FV; custo de manutenção. O grupo não consultou o GeoSampa para saber o tipo de lâmpada de uma praça real.
+**O que não foi possível confirmar e virou premissa declarada:** número de pontos e localização da praça; tempo médio anual de iluminação de São Paulo na RH ANEEL 2.590/2019 (uso 12 h, faixa de 11 a 13 h); preço de uma luminária LED de 30 W (R$ 250, faixa de R$ 150 a R$ 450); preço de bateria LiFePO4, de painel avulso, de poste e de mão de obra; vida da lâmpada de sódio e da bateria; peso do Fio B na tarifa B4a e regra de compensação para iluminação pública (fator de 0,85); tributos e bandeira tarifária (fora da premissa-base); perfil de uso da praça (fração de tempo com presença); taxa de desempenho dos sistemas FV; custo de manutenção. Não consultei o GeoSampa para saber o tipo de lâmpada de uma praça real.
 
 ## 5. Estimativas de consumo e cálculos
 
@@ -98,7 +98,7 @@ E é a energia em **kWh**, P a potência em **W** e t o tempo de funcionamento e
 | A1 LED | 30 W | 16 × 30 × 12 / 1000 = 5,760 kWh | 2.102,4 kWh | 175,2 kWh |
 | A2 e A3 LED dimerizado | 30 W com perfil de dimerização | 16 × 30 × 7,835 / 1000 + 16 × 1 × 24 / 1000 = 4,145 kWh | 1.512,9 kWh | 126,1 kWh |
 
-**Mesma necessidade de luz.** O fluxo da lâmpada de sódio é 80 lm/W × 70 W = 5.600 lm. Supondo que a luminária antiga deixe sair 70% (faixa de 60% a 80%), o fluxo útil é 3.920 lm. Com 150 lm/W, 26 W bastariam; adotamos 30 W (4.500 lm, folga de 15%).
+**Mesma necessidade de luz.** O fluxo da lâmpada de sódio é 80 lm/W × 70 W = 5.600 lm. Supondo que a luminária antiga deixe sair 70% (faixa de 60% a 80%), o fluxo útil é 3.920 lm. Com 150 lm/W, 26 W bastariam; adoto 30 W (4.500 lm, folga de 15%).
 
 **Perfil de dimerização (A2 e A3).** 4 h no início da noite a 100%; 7 h de madrugada em modo economia (30% de nível base e 100% quando há presença, durante 15% do tempo, o que dá um nível médio de 0,30 + 0,15 × 0,70 = 0,405); 1 h ao amanhecer a 100%. Horas equivalentes a 100%: 4 + 7 × 0,405 + 1 = **7,835 h**. O consumo dos sensores (1 W por ponto, 24 h por dia) está somado. O modo de 30% e 100% por presença vem do comportamento de um produto de mercado (Intelbras LSI 4800); o nível adequado a cada via deve ser conferido na NBR 5101.
 
@@ -113,7 +113,7 @@ E é a energia em **kWh**, P a potência em **W** e t o tempo de funcionamento e
 
 ### 5.3 Dimensionamento solar
 
-**A2 (na rede).** Rendimento por kWp = Σ(irradiação mensal × dias do mês) × PR = 1.674,95 kWh/m² por ano × 0,78 = **1.306,5 kWh/kWp por ano**. Potência necessária para cobrir 1.512,9 kWh por ano: 1,158 kWp, ou 2,1 módulos de 550 Wp. Adotamos **2 módulos (1,10 kWp)**, que geram 1.437,1 kWh por ano e cobrem **95,0%** da carga. Como o Fio B reduz a compensação em 2026, só 85% do valor da tarifa é abatido (premissa): custo anual de energia = (1.512,9 − 1.437,1 × 0,85) × 0,43416 = R$ 126,5.
+**A2 (na rede).** Rendimento por kWp = Σ(irradiação mensal × dias do mês) × PR = 1.674,95 kWh/m² por ano × 0,78 = **1.306,5 kWh/kWp por ano**. Potência necessária para cobrir 1.512,9 kWh por ano: 1,158 kWp, ou 2,1 módulos de 550 Wp. Adoto **2 módulos (1,10 kWp)**, que geram 1.437,1 kWh por ano e cobrem **95,0%** da carga. Como o Fio B reduz a compensação em 2026, só 85% do valor da tarifa é abatido (premissa): custo anual de energia = (1.512,9 − 1.437,1 × 0,85) × 0,43416 = R$ 126,5.
 
 **A3 (autônomo).** Energia por ponto por dia = 259 Wh. O painel é dimensionado para o **pior mês** (junho, 4,02 kWh/m²·dia): 259 / (4,02 × 0,65) = 99 Wp, arredondado para **100 Wp**. A bateria cobre 2 noites sem sol com 80% de descarga: 259 × 2 / 0,80 = 648 Wh, arredondado para **650 Wh**. Conferência: a luminária Intelbras LSI 4800 (R$ 1.572,28 no varejo) tem painel de 21 Wp e bateria de cerca de 115 Wh, bem abaixo do dimensionado aqui, o que indica que o preço dela é um piso e não um valor comparável.
 
@@ -244,7 +244,7 @@ Captura completa: [`capturas/dashboard_completo.png`](capturas/dashboard_complet
 
 - **Direto no navegador, sem servidor:** abra `dashboard/index.html` com duplo clique. Os dados vêm de `dashboard/data/resultados.js` (um arquivo `.js`, que o navegador carrega mesmo sem servidor). Os gráficos precisam de internet para baixar o Chart.js; os indicadores e as tabelas funcionam sem ela.
 - **Com servidor local (opcional):** na pasta do repositório, `python -m http.server 8000` e abra <http://localhost:8000/dashboard/>.
-- **GitHub Pages:** em Settings > Pages, escolha a branch `main` e a pasta `/ (root)`. O `index.html` da raiz redireciona para `dashboard/`. Link publicado: [[PREENCHER PELO GRUPO: URL do GitHub Pages, se ativarem]].
+- **GitHub Pages:** em Settings > Pages, escolha a branch `main` e a pasta `/ (root)`. O `index.html` da raiz redireciona para `dashboard/`. Link publicado (preencher só se ativar o Pages; senão, apague esta frase): [[LINK_PAGES]].
 
 **Arquivos do dashboard.** `dashboard/index.html` (estrutura), `dashboard/style.css` (estilo), `dashboard/app.js` (leitura dos resultados, indicadores, tabelas e gráficos), `dashboard/data/resultados.js` (gerado por `src/calcular.py`; não editar à mão).
 
@@ -266,7 +266,7 @@ Para testar outro cenário, edite `dados/premissas.csv` (por exemplo, o número 
 ```text
 README.md                         este arquivo
 entrega_SERS.txt                  arquivo enviado ao portal (nomes, RMs e links)
-PENDENCIAS_DO_GRUPO.md            roteiro do vídeo e tarefas que dependem do grupo
+PENDENCIAS_DO_GRUPO.md            roteiro do vídeo e tarefas que dependem do aluno
 index.html                        redireciona para o dashboard (GitHub Pages)
 dados/premissas.csv               todas as premissas, com fonte, faixa e justificativa
 dados/irradiacao_sundata_sao_paulo.csv   série mensal de irradiação (CRESESB)
@@ -285,7 +285,7 @@ capturas/                         capturas de tela do dashboard
 - **O caso-modelo é simulado.** A praça, a quantidade de pontos, o tipo de lâmpada atual e o perfil de uso não foram levantados em campo. Os resultados valem para o caso-modelo, não para uma praça específica.
 - **Muitos preços são premissas.** Não há orçamento real de luminária de 30 W, bateria, painel, poste, mão de obra nem do sistema FV de ~1 kWp. A seção 6.4 mostra o efeito de variar cada um.
 - **Payback simples**: sem desconto, sem inflação de tarifa, sem reajuste anual, sem troca de inversor (10 a 15 anos) e sem financiamento. A bateria de A3 entra como reserva anual de manutenção.
-- **Tarifa**: usamos TUSD + TE da classe B4a como publicados; tributos e bandeira tarifária não entram na premissa-base, e não confirmamos como a prefeitura é de fato cobrada (a REN 1.000/2021 estima o consumo por carga e tempo; o tempo de São Paulo não foi confirmado).
+- **Tarifa**: uso TUSD + TE da classe B4a como publicados; tributos e bandeira tarifária não entram na premissa-base, e não confirmei como a prefeitura é de fato cobrada (a REN 1.000/2021 estima o consumo por carga e tempo; o tempo de São Paulo não foi confirmado).
 - **Compensação FV**: o fator de 0,85 resume o efeito do Fio B (60% em 2026); a regra para iluminação pública e o peso do Fio B na B4a não foram confirmados. A viabilidade de A2 depende de local para os módulos e de autorização da distribuidora.
 - **Emissões**: o fator do MCTI é de CO₂ e muda muito de um ano para o outro; o ciclo de vida só foi considerado para o FV (a pegada do LED e da bateria não foi quantificada). A "participação renovável" de A2 é contábil, porque a rede continua ligada.
 - **Irradiação**: valor médio mensal de uma estação do CRESESB próxima, no plano inclinado na latitude; não considera sombreamento nem a orientação real dos postes. Modelos de satélite têm incerteza; o ideal é medir no local.
