@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Neighborhood Action Dashboard: módulo de energia (SERS)</title>
+  <meta name="description" content="Indicadores de energia da iluminação de uma praça comunitária e de pontos de ônibus no Capão Redondo: comparação entre vapor de sódio, LED na rede, LED com fotovoltaico na rede e LED solar autônomo.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="conteudo">
+      <p class="etiqueta">Neighborhood Action Dashboard · CitizenTech · contribuição de SERS</p>
+      <h1>Neighborhood Action Dashboard — módulo de energia (SERS)</h1>
+      <p class="sub">Iluminação de uma praça comunitária e de 4 pontos de ônibus do entorno, Capão Redondo (São Paulo/SP). Período de referência: 1 ano. Mesma necessidade de iluminação em todas as alternativas.</p>
+    </div>
+  </header>
+
+  <main class="conteudo">
+    <div class="aviso" role="note">
+      <strong>Dados simulados e estimados.</strong> A praça e os pontos de ônibus formam um caso-modelo hipotético. Economias, geração solar e emissões evitadas são <strong>projeções condicionadas às premissas</strong> listadas no fim da página, não medições nem resultados garantidos. A tarifa, a irradiação solar e o fator de emissão são dados públicos citados com fonte.
+    </div>
+
+    <div id="erro" class="erro" hidden></div>
+
+    <section aria-labelledby="h-indicadores">
+      <h2 id="h-indicadores">Indicadores da alternativa escolhida</h2>
+      <div class="seletor" role="group" aria-label="Escolha da alternativa" id="seletor"></div>
+      <p id="descricao-alt" class="descricao-alt"></p>
+      <div class="kpis" id="kpis"></div>
+    </section>
+
+    <section aria-labelledby="h-comparacao">
+      <h2 id="h-comparacao">Comparação entre as alternativas</h2>
+      <div class="grade">
+        <figure class="cartao"><figcaption>Energia por mês: carga das luminárias e compra da rede (kWh/mês)</figcaption><div class="grafico"><canvas id="g-consumo" role="img" aria-label="Gráfico de barras do consumo mensal de energia por alternativa"></canvas></div></figure>
+        <figure class="cartao"><figcaption>De onde vem a economia: cada barra soma o consumo atual (kWh/mês)</figcaption><div class="grafico"><canvas id="g-origem" role="img" aria-label="Gráfico de barras empilhadas com a origem da economia de energia"></canvas></div></figure>
+        <figure class="cartao"><figcaption>Custo de operação por mês: energia e manutenção (R$/mês)</figcaption><div class="grafico"><canvas id="g-custo" role="img" aria-label="Gráfico de barras empilhadas do custo mensal de operação"></canvas></div></figure>
+        <figure class="cartao"><figcaption>Investimento inicial por componente (R$)</figcaption><div class="grafico"><canvas id="g-capex" role="img" aria-label="Gráfico de barras empilhadas do investimento por componente"></canvas></div></figure>
+        <figure class="cartao"><figcaption>Retorno do investimento: saldo acumulado em 15 anos, sem desconto (R$)</figcaption><div class="grafico"><canvas id="g-payback" role="img" aria-label="Gráfico de linhas do saldo acumulado ao longo de 15 anos"></canvas></div></figure>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-ambiente">
+      <h2 id="h-ambiente">Benefícios ambientais</h2>
+      <div class="grade">
+        <figure class="cartao"><figcaption>Emissões de CO₂ evitadas por ano (kg CO₂/ano)</figcaption><div class="grafico"><canvas id="g-emissoes" role="img" aria-label="Gráfico de barras das emissões evitadas por alternativa"></canvas></div></figure>
+        <figure class="cartao"><figcaption>Geração solar e consumo em cada mês, alternativa A2 (kWh/mês)</figcaption><div class="grafico"><canvas id="g-mensal" role="img" aria-label="Gráfico da geração fotovoltaica e do consumo mensal da alternativa A2"></canvas></div></figure>
+      </div>
+      <p class="nota" id="nota-ambiental"></p>
+    </section>
+
+    <section aria-labelledby="h-tabela">
+      <h2 id="h-tabela">Tabela comparativa</h2>
+      <div class="rolagem"><table id="tabela" class="tabela"></table></div>
+    </section>
+
+    <section aria-labelledby="h-beneficios">
+      <h2 id="h-beneficios">Viabilidade, benefícios e limitações</h2>
+      <div class="cartoes" id="qualitativo"></div>
+    </section>
+
+    <section aria-labelledby="h-sens">
+      <h2 id="h-sens">Quanto o resultado depende das premissas</h2>
+      <p class="nota">Cada linha varia uma premissa por vez entre o mínimo e o máximo da faixa declarada, mantendo as outras no valor-base. Os cenários combinados mostram os limites quando todas as premissas que afetam o payback de A2 vão ao mesmo extremo ao mesmo tempo (improvável).</p>
+      <div class="rolagem"><table id="tab-sens" class="tabela"></table></div>
+      <div class="rolagem"><table id="tab-cenarios" class="tabela estreita"></table></div>
+    </section>
+
+    <section aria-labelledby="h-def">
+      <h2 id="h-def">Como cada indicador é calculado</h2>
+      <dl class="defs" id="defs"></dl>
+    </section>
+
+    <section aria-labelledby="h-fontes">
+      <h2 id="h-fontes">Premissas e fontes</h2>
+      <p class="nota">Cada valor tem tipo e fonte. <strong>Dado confirmado</strong>: lido na fonte em 23/11/2026. <strong>Dado parcial</strong>: fonte consultada, mas o valor veio de resumo, de busca ou de fonte secundária. <strong>Premissa</strong>: valor adotado pelo grupo, com faixa e justificativa. O arquivo completo é <code>dados/premissas.csv</code>.</p>
+      <details>
+        <summary>Mostrar a tabela de premissas e fontes</summary>
+        <div class="rolagem"><table id="tab-premissas" class="tabela pequena"></table></div>
+      </details>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="conteudo">
+      <p><strong>Contribuição de SERS (Soluções em Energias Renováveis e Sustentáveis)</strong> ao Neighborhood Action Dashboard · FIAP, Ciência da Computação, Global Solution 2026.2 · turma [[TURMA]]</p>
+      <p>Integrantes: [[NOME_1]] ([[RM_1]]), [[NOME_2]] ([[RM_2]]), [[NOME_3]] ([[RM_3]])</p>
+      <p>Resultados gerados em <span id="gerado-em"></span> por <code>src/calcular.py</code> a partir de <code>dados/premissas.csv</code>. Código, premissas e README no repositório do projeto.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" integrity="sha384-9nhczxUqK87bcKHh20fSQcTGD4qq5GhayNYSYWqwBkINBhOfQLg/P5HG5lF1urn4" crossorigin="anonymous"></script>
+  <script src="data/resultados.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
