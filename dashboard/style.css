@@ -167,7 +167,7 @@ h2::before { content: ""; width: 6px; height: 1.1em; border-radius: 3px; backgro
 .cartao figcaption { font-size: var(--t1); font-weight: 600; color: var(--tinta); line-height: 1.4; margin-bottom: 14px; min-height: 2.8em; }
 .grafico { position: relative; height: 340px; }
 .cartao.diagrama { padding: 16px; }
-.cartao.diagrama img { display: block; width: 100%; height: auto; border-radius: 8px; }
+.cartao.diagrama img { display: block; width: auto; height: auto; max-width: 100%; max-height: calc(100vh - 190px); margin: 0 auto; border-radius: 8px; }
 .nota { color: var(--suave); font-size: var(--t1); max-width: 1000px; line-height: 1.6; }
 .grade + .nota { margin-top: 20px; }
 
