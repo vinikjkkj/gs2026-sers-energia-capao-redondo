@@ -16,7 +16,24 @@
     return;
   }
 
-  var COR = { A0: '#64748b', A1: '#2563eb', A2: '#16a34a', A3: '#d97706' };
+  // paleta Okabe-Ito: A0 < A1 < A2 < A3 em luminosidade; as mesmas cores estão em style.css
+  var COR = { A0: '#475569', A1: '#0072B2', A2: '#009E73', A3: '#E69F00' };
+  var COR_FORTE = { A0: '#334155', A1: '#00598a', A2: '#00725a', A3: '#8a5a00' };
+  var FONTE_TEXTO = '"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif';
+
+  function icone(caminhos) {
+    return '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' + caminhos + '</svg>';
+  }
+  var ICONES = {
+    energia: icone('<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/>'),
+    economia: icone('<path d="m22 17-8.5-8.5-5 5L2 7"/><path d="M16 17h6v-6"/>'),
+    custo: icone('<circle cx="12" cy="12" r="9"/><path d="M12 6.5v11"/><path d="M15 9.2c-.4-1-1.4-1.6-3-1.6-1.8 0-3 .9-3 2.1 0 3 6 1.5 6 4.4 0 1.2-1.2 2.1-3 2.1-1.6 0-2.7-.7-3.1-1.8"/>'),
+    renovavel: icone('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'),
+    co2: icone('<path d="M7 18h10a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.1 9.2 4.5 4.5 0 0 0 7 18z"/>'),
+    tempo: icone('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),
+    investimento: icone('<path d="M3 7a2 2 0 0 1 2-2h13v4"/><path d="M3 7v11a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1V10a1 1 0 0 0-1-1H5a2 2 0 0 1-2-2z"/><circle cx="16.5" cy="14.5" r="1"/>'),
+    payback: icone('<path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/>')
+  };
   var alts = R.alternativas;
   var porId = {};
   alts.forEach(function (a) { porId[a.id] = a; });
@@ -71,43 +88,57 @@
     var cor = COR[a.id];
     var economiaMes = a.economia_rs_mes;
     var lista = [
-      { r: 'Consumo de energia da rede', v: nf(a.rede_kwh_mes), u: 'kWh/mês',
+      { i: 'energia', r: 'Consumo de energia da rede', v: nf(a.rede_kwh_mes), u: 'kWh/mês',
         d: 'Situação atual: ' + nf(base.rede_kwh_mes) + ' kWh/mês. Carga das luminárias: ' + nf(a.carga_kwh_mes) + ' kWh/mês.' },
-      { r: 'Economia de energia da rede', v: nf(a.economia_rede_pct), u: '%',
+      { i: 'economia', r: 'Economia de energia da rede', v: nf(a.economia_rede_pct), u: '%',
         d: nf(a.economia_rede_kwh_mes) + ' kWh/mês a menos que a situação atual.' },
-      { r: 'Redução estimada de custos', v: (economiaMes < 0 ? '−' : '') + brl(Math.abs(economiaMes)), u: '/mês',
+      { i: 'custo', r: 'Redução estimada de custos', v: (economiaMes < 0 ? '−' : '') + brl(Math.abs(economiaMes)), u: '/mês',
         d: 'Custo de operação: ' + brl(a.custo_operacao_rs_mes) + ' contra ' + brl(base.custo_operacao_rs_mes) + ' hoje' +
            (economiaMes < 0 ? ' (fica mais caro).' : '.') },
-      { r: 'Participação de energia renovável', v: nf(a.participacao_renovavel_pct), u: '%',
+      { i: 'renovavel', r: 'Participação de energia renovável', v: nf(a.participacao_renovavel_pct), u: '%',
         d: 'Parte da carga atendida por geração solar própria (' + nf(a.renovavel_kwh_mes) + ' kWh/mês).' },
-      { r: 'Emissões evitadas estimadas', v: nf(a.emissoes_evitadas_kg_ano), u: 'kg CO₂/ano',
+      { i: 'co2', r: 'Emissões evitadas estimadas', v: nf(a.emissoes_evitadas_kg_ano), u: 'kg CO₂/ano',
         d: 'Líquidas do ciclo de vida do FV: ' + nf(a.emissoes_evitadas_liquidas_kg_ano) + ' kg CO₂e/ano.' },
-      { r: 'Tempo de funcionamento eficiente', v: nf(a.horas_modo_economia_dia), u: 'h/dia',
+      { i: 'tempo', r: 'Tempo de funcionamento eficiente', v: nf(a.horas_modo_economia_dia), u: 'h/dia',
         d: 'Horas por noite em modo economia (dimerizado), de ' + nf(dim.horas_noite, 0) + ' h de funcionamento.' },
-      { r: 'Investimento inicial', v: brl(a.capex_rs, 0), u: '',
+      { i: 'investimento', r: 'Investimento inicial', v: brl(a.capex_rs, 0), u: '',
         d: dim.pontos_total + ' pontos de luz (' + dim.pontos_praca + ' na praça e ' + dim.pontos_onibus + ' em pontos de ônibus).' },
-      { r: 'Payback simples', v: a.payback_anos === null ? 'não se paga' : nf(a.payback_anos), u: a.payback_anos === null ? '' : 'anos',
+      { i: 'payback', r: 'Payback simples', v: a.payback_anos === null ? 'não se paga' : nf(a.payback_anos), u: a.payback_anos === null ? '' : 'anos',
         d: faixaPayback(a.id) + ' (cenários combinados).' }
     ];
     kpis.innerHTML = '';
     lista.forEach(function (k) {
       var c = el('div', { 'class': 'kpi' });
       c.style.setProperty('--cor', cor);
-      c.innerHTML = '<div class="rotulo">' + esc(k.r) + '</div><div class="valor">' + esc(k.v) +
-        (k.u ? '<span class="unidade">' + esc(k.u) + '</span>' : '') + '</div><div class="detalhe">' + esc(k.d) + '</div>';
+      c.style.setProperty('--cor-suave', cor + '24');
+      c.style.setProperty('--cor-forte', COR_FORTE[a.id]);
+      c.innerHTML = '<div class="kpi-topo"><span class="kpi-icone">' + ICONES[k.i] + '</span><span class="rotulo">' + esc(k.r) + '</span></div>' +
+        '<div class="valor">' + esc(k.v) + (k.u ? '<span class="unidade">' + esc(k.u) + '</span>' : '') + '</div>' +
+        '<div class="detalhe">' + esc(k.d) + '</div>';
       kpis.appendChild(c);
     });
     descricao.textContent = a.nome_completo + '. ' + a.descricao;
     Array.prototype.forEach.call(seletor.children, function (b) {
       var ativo = b.getAttribute('data-id') === escolhida;
       b.setAttribute('aria-pressed', ativo ? 'true' : 'false');
-      b.style.background = ativo ? COR[b.getAttribute('data-id')] : '';
+      b.tabIndex = ativo ? 0 : -1;
     });
   }
 
   alts.filter(function (a) { return a.id !== 'A0'; }).forEach(function (a) {
-    var b = el('button', { type: 'button', 'data-id': a.id, 'aria-pressed': 'false' }, esc(a.nome) + (a.renovavel ? ' (renovável)' : ''));
+    var b = el('button', { type: 'button', 'data-id': a.id, 'aria-pressed': 'false' },
+      '<span class="seg-ponto" style="background:' + COR[a.id] + '"></span><span class="seg-nome">' + esc(a.nome) + '</span>' +
+      (a.renovavel ? '<span class="seg-selo">renovável</span>' : ''));
     b.addEventListener('click', function () { escolhida = a.id; desenharKpis(); });
+    b.addEventListener('keydown', function (ev) {
+      var passo = ev.key === 'ArrowRight' ? 1 : ev.key === 'ArrowLeft' ? -1 : 0;
+      if (!passo) return;
+      var irmaos = Array.prototype.slice.call(seletor.children);
+      var destino = irmaos[(irmaos.indexOf(b) + passo + irmaos.length) % irmaos.length];
+      destino.click();
+      destino.focus();
+      ev.preventDefault();
+    });
     seletor.appendChild(b);
   });
   desenharKpis();
@@ -134,7 +165,7 @@
     ['Mercúrio retirado de uso (mg)', 'mercurio_retirado_mg', 0]
   ];
   (function () {
-    var t = document.getElementById('tabela');
+    var t = document.getElementById('tabela-comparativa');
     var h = '<thead><tr><th>Indicador</th>' + alts.map(function (a) {
       return '<th class="cab-' + a.id.toLowerCase() + '">' + esc(a.nome) + '</th>';
     }).join('') + '</tr></thead><tbody>';
@@ -149,7 +180,7 @@
   })();
 
   (function () {
-    var c = document.getElementById('qualitativo');
+    var c = document.getElementById('cartoes-qualitativo');
     alts.forEach(function (a) {
       var d = el('article', { 'class': 'alt' });
       d.style.setProperty('--cor', COR[a.id]);
@@ -230,133 +261,196 @@
       'Outro benefício ambiental é retirar ' + nf(porId.A1.mercurio_retirado_mg, 0) + ' mg de mercúrio das lâmpadas de sódio do caso-modelo.';
   })();
 
+
   // gráficos (Chart.js)
   if (typeof Chart === 'undefined') {
     mostrarErro('Não foi possível carregar a biblioteca Chart.js (CDN). Os indicadores e as tabelas continuam disponíveis; os gráficos precisam de internet.');
     return;
   }
 
-  Chart.defaults.font.family = 'system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif';
-  Chart.defaults.font.size = 12;
-  Chart.defaults.color = '#374151';
+  // espera as fontes carregarem (no máximo 2 s) para o canvas usar a mesma família do resto da página
+  var fontesProntas = document.fonts && document.fonts.ready
+    ? Promise.race([document.fonts.ready, new Promise(function (r) { setTimeout(r, 2000); })])
+    : Promise.resolve();
+  fontesProntas.then(desenharGraficos);
 
-  var nomes = alts.map(function (a) { return a.nome; });
-  var cores = alts.map(function (a) { return COR[a.id]; });
+  function desenharGraficos() {
+    Chart.defaults.font.family = FONTE_TEXTO;
+    Chart.defaults.font.size = 14;
+    Chart.defaults.color = '#334155';
+    Chart.defaults.borderColor = 'rgba(15, 23, 42, 0.08)';
+    Chart.defaults.animation.duration = 600;
 
-  function eixoY(titulo, extra) {
-    return Object.assign({ beginAtZero: true, title: { display: true, text: titulo }, ticks: { callback: function (v) { return nf(v, 0); } } }, extra || {});
-  }
-  function tooltipNum(casas) {
-    return { callbacks: { label: function (c) { return c.dataset.label + ': ' + nf(c.parsed.y, casas === undefined ? 1 : casas); } } };
-  }
-  function graf(id, config) {
-    try { return new Chart(document.getElementById(id), config); }
-    catch (e) { mostrarErro('Falha ao desenhar o gráfico ' + id + ': ' + e.message); return null; }
-  }
-  var legenda = { position: 'bottom', labels: { boxWidth: 12 } };
-
-  graf('g-consumo', {
-    type: 'bar',
-    data: {
-      labels: nomes,
-      datasets: [
-        { label: 'Carga das luminárias', data: alts.map(function (a) { return a.carga_kwh_mes; }), backgroundColor: cores },
-        { label: 'Compra líquida da rede', data: alts.map(function (a) { return a.rede_kwh_mes; }), backgroundColor: cores.map(function (c) { return c + '66'; }), borderColor: cores, borderWidth: 2 }
-      ]
-    },
-    options: { maintainAspectRatio: false, scales: { y: eixoY('kWh/mês') }, plugins: { legend: legenda, tooltip: tooltipNum(1) } }
-  });
-
-  var origem = [
-    ['Compra da rede', 'rede', '#64748b'],
-    ['Economia pelo LED (eficiência)', 'eficiencia_led', '#2563eb'],
-    ['Economia pela dimerização', 'dimerizacao', '#8b5cf6'],
-    ['Substituída por energia solar', 'renovavel', '#16a34a']
-  ];
-  graf('g-origem', {
-    type: 'bar',
-    data: {
-      labels: nomes,
-      datasets: origem.map(function (o) {
-        return { label: o[0], data: alts.map(function (a) { return a.decomposicao_kwh_mes[o[1]]; }), backgroundColor: o[2], stack: 'e' };
-      })
-    },
-    options: { maintainAspectRatio: false, scales: { x: { stacked: true }, y: eixoY('kWh/mês', { stacked: true }) }, plugins: { legend: legenda, tooltip: tooltipNum(1) } }
-  });
-
-  graf('g-custo', {
-    type: 'bar',
-    data: {
-      labels: nomes,
-      datasets: [
-        { label: 'Energia da rede', data: alts.map(function (a) { return a.custo_energia_rs_mes; }), backgroundColor: '#475569', stack: 'c' },
-        { label: 'Manutenção', data: alts.map(function (a) { return a.custo_om_rs_mes; }), backgroundColor: '#94a3b8', stack: 'c' }
-      ]
-    },
-    options: { maintainAspectRatio: false, scales: { x: { stacked: true }, y: eixoY('R$/mês', { stacked: true }) }, plugins: { legend: legenda, tooltip: tooltipNum(2) } }
-  });
-
-  var corComp = {
-    'Luminárias LED': '#2563eb', 'Instalação': '#64748b', 'Sensores e dimerização': '#8b5cf6', 'Sistema fotovoltaico': '#16a34a',
-    'Painéis FV': '#22c55e', 'Baterias': '#d97706', 'Controlador e cabos': '#f59e0b', 'Adaptação do poste': '#a16207'
-  };
-  var componentes = [];
-  alts.forEach(function (a) {
-    Object.keys(a.capex_detalhe_rs).forEach(function (k) { if (componentes.indexOf(k) < 0) componentes.push(k); });
-  });
-  graf('g-capex', {
-    type: 'bar',
-    data: {
-      labels: nomes,
-      datasets: componentes.map(function (k) {
-        return { label: k, data: alts.map(function (a) { return a.capex_detalhe_rs[k] || 0; }), backgroundColor: corComp[k] || '#999', stack: 'i' };
-      })
-    },
-    options: { maintainAspectRatio: false, scales: { x: { stacked: true }, y: eixoY('R$', { stacked: true }) }, plugins: { legend: legenda, tooltip: tooltipNum(0) } }
-  });
-
-  // saldo acumulado = economia anual x anos - investimento (payback simples, sem desconto)
-  var anosEixo = [];
-  for (var i = 0; i <= 15; i++) anosEixo.push(i);
-  graf('g-payback', {
-    type: 'line',
-    data: {
-      labels: anosEixo,
-      datasets: alts.filter(function (a) { return a.id !== 'A0'; }).map(function (a) {
-        return {
-          label: a.nome, borderColor: COR[a.id], backgroundColor: COR[a.id], pointRadius: 2, tension: 0,
-          data: anosEixo.map(function (t) { return a.economia_rs_ano * t - a.capex_rs; })
-        };
-      })
-    },
-    options: {
-      maintainAspectRatio: false,
-      scales: { x: { title: { display: true, text: 'anos após a instalação' } }, y: { title: { display: true, text: 'R$ acumulados' }, ticks: { callback: function (v) { return nf(v, 0); } } } },
-      plugins: { legend: legenda, tooltip: tooltipNum(0) }
+    // rótulos em várias linhas ("A2", "LED + FV", "na rede") para não girar o texto
+    function quebrar(nome) {
+      var palavras = nome.split(' ');
+      var linhas = [palavras.shift()];
+      var atual = '';
+      palavras.forEach(function (p) {
+        if (atual && (atual + ' ' + p).length > 9) { linhas.push(atual); atual = p; }
+        else { atual = atual ? atual + ' ' + p : p; }
+      });
+      if (atual) linhas.push(atual);
+      return linhas;
     }
-  });
+    var estreito = window.innerWidth < 640;
+    var rotulos = alts.map(function (a) { return estreito ? a.nome : quebrar(a.nome); });
+    var cores = alts.map(function (a) { return COR[a.id]; });
+    var suaves = cores.map(function (c) { return c + '66'; });
 
-  graf('g-emissoes', {
-    type: 'bar',
-    data: {
-      labels: nomes,
-      datasets: [
-        { label: 'Evitadas na operação', data: alts.map(function (a) { return a.emissoes_evitadas_kg_ano; }), backgroundColor: cores },
-        { label: 'Líquidas do ciclo de vida do FV', data: alts.map(function (a) { return a.emissoes_evitadas_liquidas_kg_ano; }), backgroundColor: cores.map(function (c) { return c + '66'; }), borderColor: cores, borderWidth: 2 }
-      ]
-    },
-    options: { maintainAspectRatio: false, scales: { y: eixoY('kg CO₂ ou CO₂e por ano') }, plugins: { legend: legenda, tooltip: tooltipNum(1) } }
-  });
+    function eixoY(titulo, extra) {
+      return Object.assign({
+        beginAtZero: true,
+        border: { display: false },
+        title: { display: true, text: titulo, font: { weight: '500' } },
+        ticks: { callback: function (v) { return nf(v, 0); } }
+      }, extra || {});
+    }
+    var eixoX = { grid: { display: false }, ticks: { maxRotation: estreito ? 50 : 0, minRotation: estreito ? 50 : 0, autoSkip: false, font: { size: estreito ? 12 : 14 } } };
 
-  var m = R.mensal;
-  graf('g-mensal', {
-    data: {
-      labels: m.meses,
-      datasets: [
-        { type: 'bar', label: 'Geração do FV (A2)', data: m.geracao_a2_kwh, backgroundColor: '#16a34a' },
-        { type: 'line', label: 'Consumo da carga (A2)', data: m.carga_a2_kwh, borderColor: '#111827', backgroundColor: '#111827', pointRadius: 3, tension: 0 }
-      ]
-    },
-    options: { maintainAspectRatio: false, scales: { y: eixoY('kWh/mês') }, plugins: { legend: legenda, tooltip: tooltipNum(1) } }
-  });
+    function dica(formatar, titulo) {
+      return {
+        backgroundColor: '#0f172a', titleColor: '#ffffff', bodyColor: '#e2e8f0',
+        padding: 12, cornerRadius: 10, boxPadding: 4, usePointStyle: true,
+        titleFont: { weight: '600', size: 14 }, bodyFont: { size: 14 },
+        callbacks: {
+          title: titulo || function (itens) { return alts[itens[0].dataIndex].nome; },
+          label: function (c) { return ' ' + c.dataset.label + ': ' + formatar(c.parsed.y); }
+        }
+      };
+    }
+    var legenda = {
+      position: 'bottom',
+      labels: { usePointStyle: true, pointStyle: 'rectRounded', boxWidth: 10, boxHeight: 10, padding: 14, font: { size: 14 } }
+    };
+    function opcoes(extra) {
+      return Object.assign({ maintainAspectRatio: false, interaction: { mode: 'index', intersect: false } }, extra);
+    }
+    function graf(id, config) {
+      try { return new Chart(document.getElementById(id), config); }
+      catch (e) { mostrarErro('Falha ao desenhar o gráfico ' + id + ': ' + e.message); return null; }
+    }
+
+    var kwhMes = function (v) { return nf(v, 1) + ' kWh/mês'; };
+    var rsMes = function (v) { return brl(v, 2) + '/mês'; };
+    var rs0 = function (v) { return brl(v, 0); };
+    var kgAno = function (v) { return nf(v, 1) + ' kg CO₂/ano'; };
+
+    graf('g-consumo', {
+      type: 'bar',
+      data: {
+        labels: rotulos,
+        datasets: [
+          { label: 'Carga das luminárias', data: alts.map(function (a) { return a.carga_kwh_mes; }), backgroundColor: cores, borderRadius: 6 },
+          { label: 'Compra líquida da rede', data: alts.map(function (a) { return a.rede_kwh_mes; }), backgroundColor: suaves, borderColor: cores, borderWidth: 2, borderRadius: 6 }
+        ]
+      },
+      options: opcoes({ scales: { x: eixoX, y: eixoY('kWh/mês') }, plugins: { legend: legenda, tooltip: dica(kwhMes) } })
+    });
+
+    var origem = [
+      ['Compra da rede', 'rede', '#64748b'],
+      ['Economia pelo LED (eficiência)', 'eficiencia_led', '#56B4E9'],
+      ['Economia pela dimerização', 'dimerizacao', '#CC79A7'],
+      ['Substituída por energia solar', 'renovavel', '#D55E00']
+    ];
+    graf('g-origem', {
+      type: 'bar',
+      data: {
+        labels: rotulos,
+        datasets: origem.map(function (o) {
+          return { label: o[0], data: alts.map(function (a) { return a.decomposicao_kwh_mes[o[1]]; }), backgroundColor: o[2], borderColor: '#ffffff', borderWidth: 1, stack: 'e' };
+        })
+      },
+      options: opcoes({ scales: { x: Object.assign({ stacked: true }, eixoX), y: eixoY('kWh/mês', { stacked: true }) }, plugins: { legend: legenda, tooltip: dica(kwhMes) } })
+    });
+
+    graf('g-custo', {
+      type: 'bar',
+      data: {
+        labels: rotulos,
+        datasets: [
+          { label: 'Energia da rede', data: alts.map(function (a) { return a.custo_energia_rs_mes; }), backgroundColor: '#334155', borderColor: '#ffffff', borderWidth: 1, stack: 'c' },
+          { label: 'Manutenção', data: alts.map(function (a) { return a.custo_om_rs_mes; }), backgroundColor: '#94a3b8', borderColor: '#ffffff', borderWidth: 1, stack: 'c' }
+        ]
+      },
+      options: opcoes({ scales: { x: Object.assign({ stacked: true }, eixoX), y: eixoY('R$/mês', { stacked: true }) }, plugins: { legend: legenda, tooltip: dica(rsMes) } })
+    });
+
+    var corComp = {
+      'Luminárias LED': '#0072B2', 'Instalação': '#94a3b8', 'Sensores e dimerização': '#CC79A7', 'Sistema fotovoltaico': '#009E73',
+      'Painéis FV': '#66c2a5', 'Baterias': '#E69F00', 'Controlador e cabos': '#A67C00', 'Adaptação do poste': '#8C510A'
+    };
+    var componentes = [];
+    alts.forEach(function (a) {
+      Object.keys(a.capex_detalhe_rs).forEach(function (k) { if (componentes.indexOf(k) < 0) componentes.push(k); });
+    });
+    graf('g-capex', {
+      type: 'bar',
+      data: {
+        labels: rotulos,
+        datasets: componentes.map(function (k) {
+          return { label: k, data: alts.map(function (a) { return a.capex_detalhe_rs[k] || 0; }), backgroundColor: corComp[k] || '#999999', borderColor: '#ffffff', borderWidth: 1, stack: 'i' };
+        })
+      },
+      options: opcoes({ scales: { x: Object.assign({ stacked: true }, eixoX), y: eixoY('R$', { stacked: true }) }, plugins: { legend: legenda, tooltip: dica(rs0) } })
+    });
+
+    // saldo acumulado = economia anual x anos - investimento (payback simples, sem desconto)
+    var anosEixo = [];
+    for (var i = 0; i <= 15; i++) anosEixo.push(i);
+    var formas = { A1: 'circle', A2: 'rectRot', A3: 'triangle' };
+    graf('g-payback', {
+      type: 'line',
+      data: {
+        labels: anosEixo,
+        datasets: alts.filter(function (a) { return a.id !== 'A0'; }).map(function (a) {
+          return {
+            label: a.nome, borderColor: COR[a.id], backgroundColor: COR[a.id], borderWidth: 3, pointStyle: formas[a.id], pointRadius: 4, pointHoverRadius: 6, tension: 0,
+            data: anosEixo.map(function (t) { return a.economia_rs_ano * t - a.capex_rs; })
+          };
+        })
+      },
+      options: opcoes({
+        scales: {
+          x: { grid: { display: false }, title: { display: true, text: 'anos após a instalação', font: { weight: '500' } } },
+          y: eixoY('R$ acumulados', { beginAtZero: false })
+        },
+        plugins: {
+          legend: legenda,
+          tooltip: dica(rs0, function (itens) {
+            var n = Number(itens[0].label);
+            return n === 0 ? 'Na instalação' : 'Após ' + n + (n === 1 ? ' ano' : ' anos');
+          })
+        }
+      })
+    });
+
+    graf('g-emissoes', {
+      type: 'bar',
+      data: {
+        labels: rotulos,
+        datasets: [
+          { label: 'Evitadas na operação', data: alts.map(function (a) { return a.emissoes_evitadas_kg_ano; }), backgroundColor: cores, borderRadius: 6 },
+          { label: 'Líquidas do ciclo de vida do FV', data: alts.map(function (a) { return a.emissoes_evitadas_liquidas_kg_ano; }), backgroundColor: suaves, borderColor: cores, borderWidth: 2, borderRadius: 6 }
+        ]
+      },
+      options: opcoes({ scales: { x: eixoX, y: eixoY('kg CO₂ ou CO₂e por ano') }, plugins: { legend: legenda, tooltip: dica(kgAno) } })
+    });
+
+    var m = R.mensal;
+    graf('g-mensal', {
+      data: {
+        labels: m.meses,
+        datasets: [
+          { type: 'bar', label: 'Geração do FV (A2)', data: m.geracao_a2_kwh, backgroundColor: COR.A2, borderRadius: 6 },
+          { type: 'line', label: 'Consumo da carga (A2)', data: m.carga_a2_kwh, borderColor: '#0f172a', backgroundColor: '#0f172a', borderWidth: 3, pointRadius: 4, tension: 0 }
+        ]
+      },
+      options: opcoes({
+        scales: { x: { grid: { display: false } }, y: eixoY('kWh/mês') },
+        plugins: { legend: legenda, tooltip: dica(kwhMes, function (itens) { return itens[0].label; }) }
+      })
+    });
+  }
 })();

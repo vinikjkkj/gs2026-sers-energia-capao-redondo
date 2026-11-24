@@ -48,7 +48,7 @@ Valores que podem ser confirmados (hoje são premissas declaradas, em `dados/pre
 
 ## 5. Roteiro do vídeo (até 3 minutos, não listado no YouTube, um apresentador)
 
-Meta: ficar abaixo de 2 min 50 s, para sobrar folga (o limite do enunciado é 3 min). A narração abaixo tem cerca de 320 palavras (≈ 2 min 15 s em ritmo calmo); a coluna de tempo é a janela de cada trecho, e sobra tempo para mostrar a tela sem pressa. Grave a tela do computador (por exemplo, com o Gravador do Windows, `Win + Alt + R`, ou o OBS) e narre por cima.
+Meta: ficar abaixo de 2 min 50 s, para sobrar folga (o limite do enunciado é 3 min). A narração abaixo tem cerca de 320 palavras (≈ 2 min 15 s em ritmo calmo); a coluna de tempo é a janela de cada trecho, e sobra tempo para mostrar a tela sem pressa. Grave a tela do computador (por exemplo, com o Gravador do Windows, `Win + Alt + R`, ou o OBS) e narre por cima. O dashboard foi desenhado para 1920×1080 com zoom do navegador em 100%: abra em tela cheia (F11) e use o menu fixo no topo para pular entre as seções.
 
 | Tempo | Ponto do enunciado (item 6.2) | Na tela | Fala |
 |---|---|---|---|
