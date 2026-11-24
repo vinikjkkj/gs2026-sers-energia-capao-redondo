@@ -234,7 +234,7 @@ Os oito indicadores abaixo aparecem no dashboard e saem diretamente dos cálculo
 
 ## 9. Dashboard (código de integração)
 
-**Neighborhood Action Dashboard: módulo de energia (SERS)** é uma página estática (HTML, CSS e JavaScript) com [Chart.js 4.4.1](https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js) carregado de CDN, com versão fixada e verificação de integridade (SRI). As fontes Inter e Space Grotesk vêm do Google Fonts, com fallback para fontes do sistema (a página abre normalmente sem internet, só sem as fontes e sem os gráficos). Ela mostra os indicadores de cada alternativa (com seletor), gráficos de consumo, origem da economia, custo, investimento, retorno em 15 anos, emissões e geração solar mês a mês, a tabela comparativa, benefícios e limitações, a sensibilidade às premissas e a tabela de fontes.
+**Neighborhood Action Dashboard: módulo de energia (SERS)** é uma página estática (HTML, CSS e JavaScript) com [Chart.js 4.4.1](https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js) carregado de CDN, com versão fixada e verificação de integridade (SRI). As fontes Inter e Space Grotesk vêm do Google Fonts, com fallback para fontes do sistema (a página abre normalmente sem internet, só sem as fontes e sem os gráficos). Ela mostra os indicadores de cada alternativa (com seletor), gráficos de consumo, origem da economia, custo, investimento, retorno em 15 anos, emissões e geração solar mês a mês, a tabela comparativa, o diagrama de blocos, benefícios e limitações, a sensibilidade às premissas e a tabela de fontes.
 
 ![Dashboard](capturas/dashboard_indicadores_e_graficos.png)
 
