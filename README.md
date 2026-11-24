@@ -244,7 +244,7 @@ Capturas em 1920×1080 (topo, indicadores, gráficos e rodapé) de cada alternat
 
 - **Direto no navegador, sem servidor:** abra `dashboard/index.html` com duplo clique. Os dados vêm de `dashboard/data/resultados.js` (um arquivo `.js`, que o navegador carrega mesmo sem servidor). Os gráficos precisam de internet para baixar o Chart.js; os indicadores e as tabelas funcionam sem ela.
 - **Com servidor local (opcional):** na pasta do repositório, `python -m http.server 8000` e abra <http://localhost:8000/dashboard/>.
-- **GitHub Pages:** em Settings > Pages, escolha a branch `main` e a pasta `/ (root)`. O `index.html` da raiz redireciona para `dashboard/`. Link publicado (preencher só se ativar o Pages; senão, apague esta frase): [[LINK_PAGES]].
+- **Online (GitHub Pages):** <https://vinikjkkj.github.io/gs2026-sers-energia-capao-redondo/>. O `index.html` da raiz redireciona para `dashboard/`.
 
 **Arquivos do dashboard.** `dashboard/index.html` (estrutura), `dashboard/style.css` (estilo), `dashboard/app.js` (leitura dos resultados, indicadores, tabelas e gráficos), `dashboard/data/resultados.js` (gerado por `src/calcular.py`; não editar à mão).
 
@@ -266,7 +266,6 @@ Para testar outro cenário, edite `dados/premissas.csv` (por exemplo, o número 
 ```text
 README.md                         este arquivo
 entrega_SERS.txt                  arquivo enviado ao portal (nomes, RMs e links)
-PENDENCIAS_DO_GRUPO.md            roteiro do vídeo e tarefas que dependem do aluno
 index.html                        redireciona para o dashboard (GitHub Pages)
 dados/premissas.csv               todas as premissas, com fonte, faixa e justificativa
 dados/irradiacao_sundata_sao_paulo.csv   série mensal de irradiação (CRESESB)
