@@ -1,10 +1,5 @@
-"""Gera diagrama/diagrama_blocos.svg e diagrama/diagrama_blocos.png.
-
-O SVG e montado a partir da lista de blocos abaixo. O PNG e uma captura do SVG
-feita com o Chrome em modo headless (caminho em CHROME; ajuste se for outro).
-
-Uso:  python diagrama/gerar_diagrama.py
-"""
+# Gera diagrama_blocos.svg e diagrama_blocos.png (o PNG é uma captura do SVG feita com o Chrome headless).
+# Aluno: Vinícius Alves de Souza, RM 575576 (SERS, FIAP). Uso: python diagrama/gerar_diagrama.py
 
 import os
 import subprocess
@@ -18,7 +13,7 @@ CHROME = os.environ.get("CHROME", r"C:\Program Files\Google\Chrome\Application\c
 
 W, H = 1130, 772
 LARG, GAP = 230, 50
-COL = [30 + i * (LARG + GAP) for i in range(4)]  # x das 4 colunas
+COL = [30 + i * (LARG + GAP) for i in range(4)]
 
 COR_ENERGIA, COR_DADOS, COR_COMANDO = "#c2410c", "#1d4ed8", "#15803d"
 
@@ -67,7 +62,6 @@ def montar():
     s += ('<text x="30" y="58" font-size="14" fill="#4b5563">Praça comunitária e pontos de ônibus do entorno, Capão Redondo (São Paulo). '
           'Caso-modelo simulado. A2 = LED + FV na rede; A3 = LED solar autônomo.</text>\n')
 
-    # faixas
     s += faixa(76, 232, "1. ENERGIA: FONTES, CONVERSÃO E CONSUMIDORES", "#fff7ed", "#fdba74", "#9a3412")
     s += faixa(318, 160, "2. SENSORES, MEDIÇÃO E AUTOMAÇÃO", "#eff6ff", "#93c5fd", "#1e3a8a")
     s += faixa(488, 266, "3. DADOS, PROCESSAMENTO E DASHBOARD", "#f0fdf4", "#86efac", "#14532d")

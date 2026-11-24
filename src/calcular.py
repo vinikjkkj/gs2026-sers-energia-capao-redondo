@@ -1,20 +1,8 @@
-"""Calculo energetico das alternativas de iluminacao (modulo de energia, SERS).
-
-Le as premissas de dados/premissas.csv, calcula consumo, custos, payback e
-emissoes de quatro alternativas para a mesma necessidade de iluminacao e o
-mesmo periodo de referencia (1 ano) e grava:
-
-  resultados/resultados.json      resultados completos (fonte do dashboard)
-  resultados/comparativo.csv      tabela comparativa
-  resultados/comparativo.md       tabelas em Markdown (copiadas para o README)
-  resultados/sensibilidade.csv    variacao do payback e das emissoes por premissa
-  dashboard/data/resultados.js    o mesmo JSON em um arquivo .js (abre sem servidor)
-
-Formula base: E (kWh) = P (W) x t (h) / 1000
-
-Uso:  python src/calcular.py            (gera os arquivos)
-      python src/calcular.py --readme   (gera e atualiza as tabelas do README.md)
-"""
+# Módulo de energia (SERS) do Neighborhood Action Dashboard
+# Aluno: Vinícius Alves de Souza, RM 575576 (Soluções em Energias Renováveis e Sustentáveis, FIAP)
+# Lê dados/premissas.csv, calcula consumo, custo, payback e emissões de 4 alternativas de
+# iluminação e grava resultados/ e dashboard/data/resultados.js
+# Uso: python src/calcular.py [--readme]  (--readme também atualiza as tabelas do README)
 
 import csv
 import json
@@ -31,12 +19,10 @@ ARQ_QUALITATIVO = os.path.join(RAIZ, "dados", "qualitativo.json")
 ARQ_README = os.path.join(RAIZ, "README.md")
 
 IDS = ["A0", "A1", "A2", "A3"]
-ANOS_PAYBACK_MAX = 50  # acima disso considera-se que "nao se paga"
+ANOS_PAYBACK_MAX = 50  # acima disso, "não se paga"
 
 
-# ---------------------------------------------------------------- leitura
 def ler_premissas(caminho=ARQ_PREMISSAS):
-    """Retorna (lista de linhas do CSV, dict id -> valor numerico)."""
     linhas = []
     valores = {}
     with open(caminho, encoding="utf-8", newline="") as f:
@@ -61,7 +47,6 @@ def ler_irradiacao(caminho=ARQ_IRRADIACAO):
     return meses
 
 
-# ---------------------------------------------------------------- calculo
 def energia_kwh(potencia_w, horas):
     """E = P x t / 1000 (kWh)."""
     return potencia_w * horas / 1000
@@ -72,7 +57,6 @@ def arredonda_acima(valor, passo):
 
 
 def calcular(p, meses):
-    """Calcula tudo a partir de um dicionario de premissas p (id -> numero)."""
     n = int(p["n_pontos_praca"] + p["n_pontos_onibus"])
     h = p["horas_noite"]
     d = p["dias_ano"]
@@ -81,20 +65,19 @@ def calcular(p, meses):
     tarifa = (p["tarifa_tusd_b4a"] + p["tarifa_te_b4a"]) / 1000 * p["fator_tarifa_encargos"]  # R$/kWh
     fe = p["fe_sin"]  # tCO2/MWh equivale numericamente a kg CO2/kWh
 
-    # ---- equivalencia de iluminacao (mesma necessidade para todas as alternativas)
-    fluxo_lampada = p["eficacia_hps"] * p["p_nominal_hps"]  # lm
-    fluxo_util_antigo = fluxo_lampada * p["lor_luminaria_antiga"]  # lm que sai da luminaria
-    fluxo_led = p["eficacia_led"] * p["p_led"]  # lm
+    # mesma necessidade de luz: o LED deve entregar pelo menos o fluxo (lm) que sai da luminária antiga
+    fluxo_lampada = p["eficacia_hps"] * p["p_nominal_hps"]
+    fluxo_util_antigo = fluxo_lampada * p["lor_luminaria_antiga"]
+    fluxo_led = p["eficacia_led"] * p["p_led"]
     equivalencia_ok = fluxo_led >= fluxo_util_antigo
 
-    # ---- perfil de dimerizacao
     h_ini = p["h_inicio_noite"]
     h_mad = p["h_madrugada"]
     h_ama = max(h - h_ini - h_mad, 0)
     nivel_mad = p["nivel_base"] + p["fracao_presenca"] * (1 - p["nivel_base"])
     horas_equivalentes = h_ini + h_mad * nivel_mad + h_ama  # horas a 100% por noite
 
-    # ---- carga eletrica (kWh por noite e por ano)
+    # carga elétrica: E = P x t / 1000 (kWh por noite e por ano)
     p_ponto_hps = p["p_lampada_hps"] + p["p_reator"]
     carga_noite = {
         "A0": energia_kwh(n * p_ponto_hps, h),
@@ -105,8 +88,8 @@ def calcular(p, meses):
     carga_noite["A3"] = carga_noite["A2"]
     carga_ano = {k: v * d for k, v in carga_noite.items()}
 
-    # ---- geracao FV na rede (A2) com a serie mensal do SunData
-    soma_h_dias = sum(m["inclinado"] * m["dias"] for m in meses)  # kWh/m2 por ano
+    # A2: geração FV na rede, com a série mensal de irradiação do SunData
+    soma_h_dias = sum(m["inclinado"] * m["dias"] for m in meses)
     irr_media = soma_h_dias / sum(m["dias"] for m in meses)
     irr_critica = min(m["inclinado"] for m in meses)
     rendimento_kwp = soma_h_dias * p["pr_ongrid"]  # kWh por kWp por ano
@@ -117,7 +100,7 @@ def calcular(p, meses):
     fv_utilizada = min(geracao_fv, carga_ano["A2"])
     capex_fv = kwp_fv * 1000 * p["custo_fv_wp"]
 
-    # ---- dimensionamento do conjunto autonomo (A3), por ponto
+    # A3: painel dimensionado pelo pior mês e bateria pela autonomia desejada (por ponto)
     energia_dia_ponto_wh = carga_noite["A3"] / n * 1000
     wp_painel = arredonda_acima(energia_dia_ponto_wh / (irr_critica * p["pr_offgrid"]), 10)
     wh_bateria = arredonda_acima(energia_dia_ponto_wh * p["autonomia_noites"] / p["dod_bateria"], 10)
@@ -129,7 +112,6 @@ def calcular(p, meses):
     )
     geracao_a3_ano = n * wp_painel / 1000 * irr_media * d * p["pr_offgrid"]
 
-    # ---- investimento (R$)
     capex_led = n * (p["preco_luminaria_led"] + p["custo_instalacao_ponto"])
     capex = {
         "A0": 0.0,
@@ -156,7 +138,6 @@ def calcular(p, meses):
         },
     }
 
-    # ---- operacao: energia comprada e manutencao (R$/ano)
     anos_entre_trocas = p["vida_hps_h"] / horas_ano
     om = {
         "A0": n * p["custo_troca_hps"] / anos_entre_trocas,
@@ -164,12 +145,13 @@ def calcular(p, meses):
         "A2": n * p["om_led_ponto"] + p["om_fv_pct"] * capex_fv,
         "A3": n * (p["om_solar_ponto"] + custo_bateria / p["vida_bateria_anos"]),
     }
-    rede_liquida = {  # kWh/ano comprados da rede depois da compensacao FV
+    rede_liquida = {  # kWh/ano comprados da rede depois da compensação FV
         "A0": carga_ano["A0"],
         "A1": carga_ano["A1"],
         "A2": carga_ano["A2"] - fv_utilizada,
         "A3": 0.0,
     }
+    # só a fração fator_compensacao da geração FV abate o valor da tarifa (efeito do Fio B)
     custo_energia = {
         "A0": carga_ano["A0"] * tarifa,
         "A1": carga_ano["A1"] * tarifa,
@@ -178,12 +160,10 @@ def calcular(p, meses):
     }
     renovavel_kwh = {"A0": 0.0, "A1": 0.0, "A2": fv_utilizada, "A3": carga_ano["A3"]}
 
-    # ---- emissoes (kg CO2/ano)
     emissao_rede = {k: rede_liquida[k] * fe for k in IDS}
     emissao_ciclo_fv = {k: renovavel_kwh[k] * p["ef_ciclo_fv"] / 1000 for k in IDS}
     base_emissao = emissao_rede["A0"]
 
-    # ---- resultados por alternativa
     base_custo_total = custo_energia["A0"] + om["A0"]
     base_carga = carga_ano["A0"]
     qual = json.load(open(ARQ_QUALITATIVO, encoding="utf-8"))
@@ -191,13 +171,14 @@ def calcular(p, meses):
     for k in IDS:
         custo_total = custo_energia[k] + om[k]
         economia_ano = base_custo_total - custo_total
+        # payback simples = investimento / economia anual, sem desconto
         payback = capex[k] / economia_ano if (capex[k] > 0 and economia_ano > 0) else None
         if payback is not None and payback > ANOS_PAYBACK_MAX:
             payback = None
         evitadas_op = base_emissao - emissao_rede[k]
         evitadas_liq = evitadas_op - emissao_ciclo_fv[k]
         horas_economia = h_mad if k in ("A2", "A3") else 0.0
-        # decomposicao do consumo mensal da carga base (kWh/mes)
+        # origem da economia em kWh/mês (rede, LED, dimerização, solar)
         carga_led = carga_ano["A1"] if k != "A0" else carga_ano["A0"]
         decomp = {
             "rede": rede_liquida[k] / 12,
@@ -238,7 +219,6 @@ def calcular(p, meses):
             }
         )
 
-    # ---- serie mensal (A2: geracao x carga; A3: geracao do painel dimensionado)
     mensal = {
         "meses": [m["mes"] for m in meses],
         "irradiacao_inclinada": [m["inclinado"] for m in meses],
@@ -283,7 +263,6 @@ def calcular(p, meses):
     return {"dimensionamento": dimensionamento, "alternativas": alternativas, "mensal": mensal}
 
 
-# ---------------------------------------------------------------- sensibilidade
 def _payback(res, alt):
     v = next(a for a in res["alternativas"] if a["id"] == alt)["payback_anos"]
     return v
@@ -326,7 +305,7 @@ def sensibilidade(linhas, base, meses):
     def chave(x):
         return float("inf") if x is None else x
 
-    # cenarios combinados: em cada premissa, a ponta que piora (ou melhora) o payback de A2
+    # cenários combinados: em cada premissa vai a ponta que piora (ou melhora) o payback de A2
     pior, melhor = dict(base), dict(base)
     for t in tabela:
         if t["payback_a2"][0] == t["payback_a2"][1]:
@@ -335,7 +314,6 @@ def sensibilidade(linhas, base, meses):
         melhor[t["id"]] = extremos[0][1]
         pior[t["id"]] = extremos[-1][1]
     cenarios = {}
-    # limites: todas as premissas que afetam o payback de A2 na mesma ponta ao mesmo tempo
     for nome, p in (("otimista", melhor), ("base", base), ("conservador", pior)):
         r = calcular(p, meses)
         cenarios[nome] = {
@@ -354,7 +332,6 @@ def sensibilidade(linhas, base, meses):
     return tabela, cenarios
 
 
-# ---------------------------------------------------------------- saidas
 def fmt(v, casas=1):
     if v is None:
         return "não se paga"
@@ -363,12 +340,10 @@ def fmt(v, casas=1):
 
 
 def fmt_auto(v):
-    """Inteiro sem casas; senao, 2 casas."""
     return fmt(v, 0 if float(v).is_integer() else 2)
 
 
 def fmt_par(par):
-    """Dois paybacks (no minimo e no maximo da faixa) em uma celula."""
     if par[0] is None and par[1] is None:
         return "não se paga"
     return f"{fmt(par[0], 1)} a {fmt(par[1], 1)}"

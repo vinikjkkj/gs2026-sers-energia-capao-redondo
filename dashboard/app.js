@@ -1,6 +1,5 @@
-/* Dashboard de energia (SERS). Lê window.RESULTADOS (data/resultados.js),
-   gerado por src/calcular.py, e desenha indicadores, gráficos e tabelas.
-   Nenhum número é calculado aqui além de somas simples e formatação. */
+// Dashboard de energia (SERS). Aluno: Vinícius Alves de Souza, RM 575576.
+// Lê window.RESULTADOS (data/resultados.js, gerado por src/calcular.py); aqui só se formata e se desenha.
 (function () {
   'use strict';
 
@@ -24,7 +23,7 @@
   var base = porId.A0;
   var dim = R.dimensionamento;
 
-  /* ---------- formatação ---------- */
+  // formatação
   function nf(v, casas) {
     casas = casas === undefined ? 1 : casas;
     return new Intl.NumberFormat('pt-BR', { minimumFractionDigits: casas, maximumFractionDigits: casas }).format(v);
@@ -55,7 +54,7 @@
 
   document.getElementById('gerado-em').textContent = R.gerado_em.split('-').reverse().join('/');
 
-  /* ---------- indicadores (KPIs) ---------- */
+  // indicadores (KPIs)
   var seletor = document.getElementById('seletor');
   var kpis = document.getElementById('kpis');
   var descricao = document.getElementById('descricao-alt');
@@ -113,7 +112,6 @@
   });
   desenharKpis();
 
-  /* ---------- tabela comparativa ---------- */
   var linhasTabela = [
     ['Potência por ponto de luz (W)', 'potencia_ponto_w', 1],
     ['Energia por noite, 16 pontos (kWh)', 'energia_noite_kwh', 2],
@@ -150,7 +148,6 @@
     t.innerHTML = h + '</tbody>';
   })();
 
-  /* ---------- qualitativo ---------- */
   (function () {
     var c = document.getElementById('qualitativo');
     alts.forEach(function (a) {
@@ -165,7 +162,6 @@
     });
   })();
 
-  /* ---------- sensibilidade ---------- */
   (function () {
     function par(v) {
       if (v[0] === null && v[1] === null) return 'não se paga';
@@ -190,7 +186,6 @@
     c.innerHTML = h2 + '</tbody>';
   })();
 
-  /* ---------- definições dos indicadores ---------- */
   (function () {
     var d = document.getElementById('defs');
     var itens = [
@@ -206,7 +201,6 @@
     d.innerHTML = itens.map(function (i) { return '<dt>' + esc(i[0]) + '</dt><dd>' + esc(i[1]) + '</dd>'; }).join('');
   })();
 
-  /* ---------- premissas e fontes ---------- */
   (function () {
     var t = document.getElementById('tab-premissas');
     var selo = { 'dado confirmado': ['confirmado', 'confirmado'], 'dado parcial': ['parcial', 'parcial'], 'premissa': ['premissa', 'premissa'] };
@@ -224,7 +218,6 @@
     t.innerHTML = h + '</tbody>';
   })();
 
-  /* ---------- nota ambiental ---------- */
   (function () {
     var a2 = porId.A2, a3 = porId.A3;
     var fe = prem('fe_sin');
@@ -237,7 +230,7 @@
       'Outro benefício ambiental é retirar ' + nf(porId.A1.mercurio_retirado_mg, 0) + ' mg de mercúrio das lâmpadas de sódio do caso-modelo.';
   })();
 
-  /* ---------- gráficos ---------- */
+  // gráficos (Chart.js)
   if (typeof Chart === 'undefined') {
     mostrarErro('Não foi possível carregar a biblioteca Chart.js (CDN). Os indicadores e as tabelas continuam disponíveis; os gráficos precisam de internet.');
     return;
@@ -322,6 +315,7 @@
     options: { maintainAspectRatio: false, scales: { x: { stacked: true }, y: eixoY('R$', { stacked: true }) }, plugins: { legend: legenda, tooltip: tooltipNum(0) } }
   });
 
+  // saldo acumulado = economia anual x anos - investimento (payback simples, sem desconto)
   var anosEixo = [];
   for (var i = 0; i <= 15; i++) anosEixo.push(i);
   graf('g-payback', {

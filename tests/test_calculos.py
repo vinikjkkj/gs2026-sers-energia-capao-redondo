@@ -1,15 +1,12 @@
-"""Conferencia independente dos calculos (sem bibliotecas externas).
-
-Rodar:  python tests/test_calculos.py
-Cada teste refaz a conta a mao, com os valores de dados/premissas.csv, e compara
-com o que o script src/calcular.py produz.
-"""
+# Testes dos cálculos (SERS). Aluno: Vinícius Alves de Souza, RM 575576.
+# Cada teste refaz a conta à mão e compara com o resultado de src/calcular.py.
+# Rodar: python tests/test_calculos.py
 import os
 import sys
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(RAIZ, "src"))
-import calcular  # noqa: E402
+import calcular
 
 linhas, p = calcular.ler_premissas()
 meses = calcular.ler_irradiacao()
@@ -27,7 +24,7 @@ def test_formula_energia():
 
 
 def test_consumo_convencional():
-    esperado_ano = 16 * (72.5 + 12) * 12 * 365 / 1000  # kWh/ano
+    esperado_ano = 16 * (72.5 + 12) * 12 * 365 / 1000
     assert perto(alt["A0"]["carga_kwh_ano"], esperado_ano)
     assert perto(alt["A0"]["carga_kwh_mes"], esperado_ano / 12)
 
@@ -39,7 +36,7 @@ def test_consumo_led():
 def test_perfil_dimerizacao():
     # 4 h a 100% + 7 h a (0,30 + 0,15 x 0,70) + 1 h a 100% = 7,835 h equivalentes
     assert perto(res["dimensionamento"]["led_dimerizado_horas_equivalentes"], 4 + 7 * (0.30 + 0.15 * 0.70) + 1)
-    esperado = 16 * 30 * 7.835 / 1000 + 16 * 1.0 * 24 / 1000  # kWh por noite (LED dimerizado + sensores)
+    esperado = 16 * 30 * 7.835 / 1000 + 16 * 1.0 * 24 / 1000  # kWh por noite: LED dimerizado + sensores
     assert perto(alt["A2"]["energia_noite_kwh"], esperado)
 
 
@@ -66,7 +63,7 @@ def test_irradiacao_confere_com_sundata():
 
 def test_fv_a2():
     d = res["dimensionamento"]
-    rendimento = sum(m["inclinado"] * m["dias"] for m in meses) * 0.78  # kWh/kWp.ano
+    rendimento = sum(m["inclinado"] * m["dias"] for m in meses) * 0.78
     assert perto(d["a2_geracao_kwh_ano"], d["a2_kwp_instalado"] * rendimento)
     assert d["a2_modulos"] == 2 and perto(d["a2_kwp_instalado"], 1.1)
     assert 0 < d["a2_cobertura_pct"] <= 100
